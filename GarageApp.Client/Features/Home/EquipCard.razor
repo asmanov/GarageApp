@@ -1,0 +1,23 @@
+﻿<MudItem xs="6" sm="3" style="margin: 3px">
+    <MudCard>
+        <MudCardMedia ObjectFit="ObjectFit.ScaleDown" Height="400" Width="200" Elevation="100" Image=@Equipment.Image>
+
+        </MudCardMedia>
+        <MudCardContent>
+            <MudText Typo="Typo.h5">@Equipment.Id</MudText>
+            <MudText Typo="Typo.body2">@Equipment.BrandName</MudText>
+            <MudText Typo="Typo.body2">@Equipment.ModelName</MudText>
+            <MudText Typo="Typo.body2">@Equipment.Year</MudText>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Text" Color="Color.Primary">Share</MudButton>
+            <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudItem>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public Equipment Equipment { get; set; } = default!;
+}

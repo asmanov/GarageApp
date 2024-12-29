@@ -1,0 +1,56 @@
+[
+  {
+    "id": "AE9058KT",
+    "modelName": "XF 105.460",
+    "brandName": "DAF",
+    "image": "equipImage/9058.jpg",
+    "description": "Track",
+    "year": 2015,
+    "mileage": 600000
+  },
+  {
+    "id": "BC1163TB",
+    "modelName": "XF 460 FT",
+    "brandName": "DAF",
+    "image": "equipImage/1163.jpg",
+    "description": "Track",
+    "year": 2016,
+    "mileage": 600000
+  },
+  {
+    "id": "AE9928CC",
+    "modelName": "XF 460 FT",
+    "brandName": "DAF",
+    "image": "equipImage/9928.jpg",
+    "description": "Track",
+    "year": 2015,
+    "mileage": 600000
+  },
+  {
+    "id": "KA1635HH",
+    "modelName": "CF 460",
+    "brandName": "DAF",
+    "image": "equipImage/1635.jpg",
+    "description": "Track",
+    "year": 2013,
+    "mileage": 600000
+  },
+  {
+    "id": "KE7971AK",
+    "modelName": "XF 460 FT",
+    "brandName": "DAF",
+    "image": "equipImage/7971.jpg",
+    "description": "Track",
+    "year": 2015,
+    "mileage": 600000
+  },
+  {
+    "id": "KE8215AP",
+    "modelName": "XF 460 FT",
+    "brandName": "DAF",
+    "image": "equipImage/8215.jpg",
+    "description": "Track",
+    "year": 2017,
+    "mileage": 600000
+  }
+]
