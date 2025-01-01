@@ -8,16 +8,18 @@
         <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
     }
     else{
+        <EquipDetails Equipment="_selectedEquip"/>
         @foreach (var equip in _equips)
         {
-            <EquipCard Equipment="equip"/>
+            <EquipCard Equipment="equip" OnSelected="HandleEquipSelected"/>
         }
-}
+    }
 </MudGrid>
 
 
 @code{
     private IEnumerable<Equipment>? _equips;
+    private Equipment? _selectedEquip;
 
     protected override async Task OnInitializedAsync(){
         try
@@ -29,4 +31,6 @@
             Console.WriteLine($"There was a problem Loading equipment data: {ex.Message}");
         }
     }
+
+    private void HandleEquipSelected(Equipment equipment) => _selectedEquip = equipment;
 }

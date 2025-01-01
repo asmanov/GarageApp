@@ -52,5 +52,23 @@
     "description": "Track",
     "year": 2017,
     "mileage": 600000
+  },
+  {
+    "id": "AH8294KX",
+    "modelName": "XF 95.430",
+    "brandName": "DAF",
+    "image": "equipImage/8492.jpg",
+    "description": "Track",
+    "year": 2004,
+    "mileage": 1400000
+  },
+  {
+    "id": "AH8215KO",
+    "modelName": "XF 105.410",
+    "brandName": "DAF",
+    "image": "equipImage/ah8215.jpg",
+    "description": "Track",
+    "year": 2008,
+    "mileage": 1400000
   }
 ]
