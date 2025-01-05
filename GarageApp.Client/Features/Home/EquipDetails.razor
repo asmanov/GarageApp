@@ -1,30 +1,31 @@
-﻿<MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="false" Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" Width="30%">
+﻿<MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" Width="30%" Variant="DrawerVariant.Responsive" >
+    <MudFab StartIcon="@Icons.Material.Filled.Close"
+            Color="Color.Error"
+            Size="Size.Small"
+            OnClick="Close"
+            ToolTip="Close"
+            ToolTipPosition="Bottom" />
     @if (_activeEquip is not null)
     {
         <MudDrawerHeader>
-            <MudText Typo="Typo.h5">@_activeEquip.Id</MudText>
+            <MudText Typo="Typo.h5"><b>Державний номер: </b>@_activeEquip.Id</MudText>
         </MudDrawerHeader>
-        <MudImage Src=@_activeEquip.Image Alt="Track" Elevation="25" Class="rounded-lg ma-5" />
+        <MudImage Src=@_activeEquip.Image Alt="Track" Elevation="25" Width="300" Class="rounded-lg ma-5" />
         <MudDrawerContainer >
             
         </MudDrawerContainer>
         <MudDrawerContainer Class="ma-10">
-            <MudText Typo="Typo.body2">@_activeEquip.BrandName</MudText>
-            <MudText Typo="Typo.body2">@_activeEquip.ModelName</MudText>
-            <MudText Typo="Typo.body2">@_activeEquip.Year</MudText>
+            <MudText Typo="Typo.body1"><b>Марка: </b>@_activeEquip.BrandName</MudText>
+            <MudText Typo="Typo.body1"><b>Модель: </b>@_activeEquip.ModelName</MudText>
+            <MudText Typo="Typo.body1"><b>Рік: </b>@_activeEquip.Year</MudText>
+            <MudText Typo="Typo.body1"><b>Пробіг: </b>@_activeEquip.Mileage<b> км</b></MudText>
         </MudDrawerContainer>
     }
-    <MudIconButton Icon="@Icons.Material.Filled.Close"
-                   Color="Color.Error"
-                   Size="Size.Medium"
-                   OnClick="Close"
-                   ToolTip="Close"
-                   ToolTipPosition="Bottom" />
 </MudDrawer>
 
 
 @code {
-    private bool _isopen;
+    private bool _isopen = false;
     private Equipment? _activeEquip;
 
     [Parameter, EditorRequired]

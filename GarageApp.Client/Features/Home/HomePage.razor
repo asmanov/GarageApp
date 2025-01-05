@@ -2,19 +2,31 @@
 @inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
+<EquipDetails Equipment="_selectedEquip" />
 
-<MudGrid Justify="Justify.SpaceEvenly">
-    @if(_equips == null){
-        <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
-    }
-    else{
-        <EquipDetails Equipment="_selectedEquip"/>
-        @foreach (var equip in _equips)
-        {
-            <EquipCard Equipment="equip" OnSelected="HandleEquipSelected"/>
-        }
-    }
-</MudGrid>
+    <MudItem>
+        <EquipSearch/>
+    </MudItem>
+    <MudFlexBreak />
+    
+        
+        <MudGrid Justify="Justify.SpaceEvenly">
+            
+            @if (_equips == null)
+            {
+                <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
+            }
+            else
+            {
+
+
+                @foreach (var equip in _equips)
+                {
+                    <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
+                }
+            }
+        </MudGrid>
+    
 
 
 @code{
