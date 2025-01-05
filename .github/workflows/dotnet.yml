@@ -5,9 +5,8 @@ name: Build and Deploy Blazor WebAssembly
 
 on:
   push:
-    branches:
-      - main  # Или другая ветка, с которой хотите публиковать
-
+    branches: [ "master" ]
+      
 jobs:
   build:
     runs-on: ubuntu-latest
