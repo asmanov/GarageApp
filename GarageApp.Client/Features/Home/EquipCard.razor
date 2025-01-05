@@ -1,6 +1,6 @@
-﻿<MudItem xs="6" sm="3" style="margin: 3px">
+﻿<MudItem xs="3" xm="3" style="margin: 3px">
     <MudCard>
-        <MudCardMedia ObjectFit="ObjectFit.ScaleDown" Height="400" Width="200" Elevation="100" Image=@Equipment.Image>
+        <MudCardMedia ObjectFit="ObjectFit.ScaleDown" Height="400" Elevation="100" Class="rounded-lg ma-2" Image=@Equipment.Image>
 
         </MudCardMedia>
         <MudCardContent>
@@ -10,8 +10,7 @@
             <MudText Typo="Typo.body2">@Equipment.Year</MudText>
         </MudCardContent>
         <MudCardActions>
-            <MudButton Variant="Variant.Text" Color="Color.Primary">Share</MudButton>
-            <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+            <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="@(async () => await OnSelected.InvokeAsync(Equipment))">Learn More</MudButton >
         </MudCardActions>
     </MudCard>
 </MudItem>
@@ -20,4 +19,6 @@
 @code {
     [Parameter, EditorRequired]
     public Equipment Equipment { get; set; } = default!;
+    [Parameter]
+    public EventCallback<Equipment> OnSelected { get; set; }
 }

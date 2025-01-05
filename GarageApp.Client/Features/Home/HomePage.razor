@@ -2,22 +2,36 @@
 @inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
+<EquipDetails Equipment="_selectedEquip" />
 
-<MudGrid Justify="Justify.SpaceEvenly">
-    @if(_equips == null){
-        <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
-    }
-    else{
-        @foreach (var equip in _equips)
-        {
-            <EquipCard Equipment="equip"/>
-        }
-}
-</MudGrid>
+    <MudItem>
+        <EquipSearch/>
+    </MudItem>
+    <MudFlexBreak />
+    
+        
+        <MudGrid Justify="Justify.SpaceEvenly">
+            
+            @if (_equips == null)
+            {
+                <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
+            }
+            else
+            {
+
+
+                @foreach (var equip in _equips)
+                {
+                    <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
+                }
+            }
+        </MudGrid>
+    
 
 
 @code{
     private IEnumerable<Equipment>? _equips;
+    private Equipment? _selectedEquip;
 
     protected override async Task OnInitializedAsync(){
         try
@@ -29,4 +43,6 @@
             Console.WriteLine($"There was a problem Loading equipment data: {ex.Message}");
         }
     }
+
+    private void HandleEquipSelected(Equipment equipment) => _selectedEquip = equipment;
 }
