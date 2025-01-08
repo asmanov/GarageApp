@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GarageApp.Client",
   "resources": {
-    "hash": "sha256-2TUUtbi9Bxzko8Hb7cRGbte78WmGCRqHfqmqr/Rr5lo=",
+    "hash": "sha256-uOv9R8fz5uRjyHJUGPQV6cwRmI4ByiVJqe72w1avS+c=",
     "jsModuleNative": {
       "dotnet.native.8.0.11.n1sf6xr5tz.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "GarageApp.Client.wasm": "sha256-MFGHSlHVVih042SKYn1YD15Iiqluj2oMGwvqOMg7/jY=",
+      "GarageApp.Client.wasm": "sha256-sdUim/KpBDlOE/LHIhq0XKnJ9zDyXMoqtOsxhfLTD3I=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-qumURht9owdnl+FbtT9xGCqASYhLm/tSbTPB5JTlj9Y=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-bfQZpEx7iDVf7w+Xy6aYuDvwFN8wNxxYF89NP6HOkiQ=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-mq9Bf+1fRF6YC/ro2NPxtoh+szT1wSIzMzJ6FpNjYu8=",
