@@ -1,27 +1,57 @@
-﻿<MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" Width="30%" Variant="DrawerVariant.Responsive" >
-    <MudFab StartIcon="@Icons.Material.Filled.Close"
-            Color="Color.Error"
-            Size="Size.Small"
-            OnClick="Close"
-            ToolTip="Close"
-            ToolTipPosition="Bottom" />
-    @if (_activeEquip is not null)
-    {
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h5"><b>Державний номер: </b>@_activeEquip.Id</MudText>
-        </MudDrawerHeader>
-        <MudImage Src=@_activeEquip.Image Alt="Track" Elevation="25" Width="300" Class="rounded-lg ma-5" />
-        <MudDrawerContainer >
-            
-        </MudDrawerContainer>
-        <MudDrawerContainer Class="ma-10">
-            <MudText Typo="Typo.body1"><b>Марка: </b>@_activeEquip.BrandName</MudText>
-            <MudText Typo="Typo.body1"><b>Модель: </b>@_activeEquip.ModelName</MudText>
-            <MudText Typo="Typo.body1"><b>Рік: </b>@_activeEquip.Year</MudText>
-            <MudText Typo="Typo.body1"><b>Пробіг: </b>@_activeEquip.Mileage<b> км</b></MudText>
-        </MudDrawerContainer>
-    }
-</MudDrawer>
+﻿<MudHidden Breakpoint="Breakpoint.Xs">
+    <MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" Width="30%" Variant="DrawerVariant.Responsive">
+        <MudFab StartIcon="@Icons.Material.Filled.Close"
+                Color="Color.Error"
+                Size="Size.Small"
+                OnClick="Close"
+                ToolTip="Close"
+                ToolTipPosition="Bottom" />
+        @if (_activeEquip is not null)
+        {
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h5"><b>Державний номер: </b>@_activeEquip.Id</MudText>
+            </MudDrawerHeader>
+            <MudImage Src=@_activeEquip.Image Alt="Track" Elevation="25" Width="300" Class="rounded-lg ma-5" />
+            <MudDrawerContainer>
+
+            </MudDrawerContainer>
+            <MudDrawerContainer Class="ma-10">
+                <MudText Typo="Typo.body1"><b>Марка: </b>@_activeEquip.BrandName</MudText>
+                <MudText Typo="Typo.body1"><b>Модель: </b>@_activeEquip.ModelName</MudText>
+                <MudText Typo="Typo.body1"><b>Рік: </b>@_activeEquip.Year</MudText>
+                <MudText Typo="Typo.body1"><b>Пробіг: </b>@_activeEquip.Mileage<b> км</b></MudText>
+            </MudDrawerContainer>
+        }
+    </MudDrawer>
+</MudHidden>
+<MudHidden Breakpoint="Breakpoint.SmAndUp">
+    <MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" Width="95%" Variant="DrawerVariant.Responsive">
+        @if (_activeEquip is not null)
+        {
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h5"><b>Державний номер: </b>@_activeEquip.Id</MudText>
+            </MudDrawerHeader>
+            <MudImage Src=@_activeEquip.Image Alt="Track" Elevation="25" Width="300" Class="rounded-lg ma-5" />
+            <MudDrawerContainer>
+
+            </MudDrawerContainer>
+            <MudDrawerContainer Class="ma-10">
+                <MudText Typo="Typo.body1"><b>Марка: </b>@_activeEquip.BrandName</MudText>
+                <MudText Typo="Typo.body1"><b>Модель: </b>@_activeEquip.ModelName</MudText>
+                <MudText Typo="Typo.body1"><b>Рік: </b>@_activeEquip.Year</MudText>
+                <MudText Typo="Typo.body1"><b>Пробіг: </b>@_activeEquip.Mileage<b> км</b></MudText>
+            </MudDrawerContainer>
+        }
+        <MudFab StartIcon="@Icons.Material.Filled.Close"
+                Color="Color.Error"
+                Size="Size.Small"
+                OnClick="Close"
+                ToolTip="Close"
+                ToolTipPosition="Bottom" />
+    </MudDrawer>
+</MudHidden>
+
+
 
 
 @code {
