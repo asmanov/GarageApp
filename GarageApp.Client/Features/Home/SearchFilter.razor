@@ -1,0 +1,45 @@
+﻿@inject NavigationManager NavManager
+
+<MudContainer Class="d-flex align-center flex-column justify-center mud-width-full py-8" Style="border:solid; border-radius: 10px; border-color:rgba(33,150,243,1); margin-top: 20px; margin-bottom: 20px">
+    
+    <MudContainer Class="d-flex align-center justify-center mud-width-full py-8">
+        <MudNumericField @bind-Value="_yearProdact" Label="Рік виготовлення" Variant="Variant.Outlined" Min="2000" Max="2025" Style="margin: 5p" />
+        
+        <MudNumericField @bind-Value="_milage" Label="Пробіг до ... км" Variant="Variant.Outlined" Min="0" Max="2000000" Step="10000" Style="margin: 5px" />
+    </MudContainer>
+    <MudContainer>
+        <a><MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="FilterSearchResult">Фільтрувати</MudButton></a>
+        <a><MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="ClearSearchFilter">Очистить</MudButton></a>
+    </MudContainer>
+</MudContainer>
+
+@code {
+    private int _yearProdact;
+    private int _milage;
+
+    [Parameter, EditorRequired] public string TextValue { get; set; } = default!;
+    [Parameter] public int? YearProdact { get; set; }
+    [Parameter] public int? Milage { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _yearProdact = YearProdact ?? 0;
+        _milage = Milage ?? 0;
+    }
+
+    private void FilterSearchResult(){
+        var uriWithQuerystring = NavManager.GetUriWithQueryParameters(new Dictionary<string, object?>()
+        {
+                [nameof(SearchPage.YearProdact)] = _yearProdact == 0 ? null : _yearProdact,
+                [nameof(SearchPage.Milage)] = _milage == 0 ? null : _milage
+        });
+
+        NavManager.NavigateTo(uriWithQuerystring);
+    }
+
+    private void ClearSearchFilter(){
+        _yearProdact = 0;
+        _milage = 0;
+        NavManager.NavigateTo($"/search/{TextValue}");
+    }
+}
