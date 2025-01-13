@@ -1,45 +1,87 @@
-﻿@page "/GarageApp/search/{TextValue}"
+﻿@page "/search/{TextValue}"
+@* /search/{TextValue} *@
 @inject HttpClient Http
 @inject NavigationManager NavManager
 
 <PageTitle>Search Equipment - Garage</PageTitle>
 
 <MudNavMenu>
-    <MudNavLink Href="/">Home</MudNavLink>
+    <MudNavLink Href="/" >Home</MudNavLink>
+    @* Href="/GarageApp/" *@
 </MudNavMenu>
 
-@if (_searchResults == null)
-{
-    <p>Loading search results...</p>
-}
-else{
-    <EquipDetails Equipment="_selectedEquip" />
-    <MudGrid Justify="Justify.SpaceEvenly">
-        @foreach (var equip in _searchResults)
-        {
-            <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
-        }
-    </MudGrid>
-}
+<SearchFilter TextValue="@TextValue" YearProdact="@YearProdact" Milage="@Milage" />
 
-<h3>Search results</h3>
+<MudContainer>
+    <h3>Search results for @TextValue</h3>
+</MudContainer>
+
+<MudContainer>
+    @if (_searchResults == null)
+    {
+        <p>Loading search results...</p>
+    }
+    else
+    {
+        <EquipDetails Equipment="_selectedEquip" />
+        <MudGrid Justify="Justify.SpaceEvenly">
+            @foreach (var equip in _searchResults)
+            {
+                <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
+            }
+        </MudGrid>
+    }
+</MudContainer>
+
 
 @code {
     private IEnumerable<Equipment>? _searchResults;
+    private IEnumerable<Equipment> _cachedSearchResults = Array.Empty<Equipment>();
     private Equipment? _selectedEquip;
 
-    [Parameter]
-    public string TextValue { get; set; } = default!;
+
+    [Parameter] public string TextValue { get; set; } = default!;
+    [Parameter, SupplyParameterFromQuery] public int? YearProdact { get; set; }
+    [Parameter, SupplyParameterFromQuery] public int? Milage { get; set; }
+
     protected override async Task OnInitializedAsync(){
         try
         {
             var allEquips = await Http.GetFromJsonAsync<IEnumerable<Equipment>>("Equipment/equip-data.json");
             _searchResults = allEquips!
-            .Where(x => x.BrandName.Contains(TextValue, StringComparison.CurrentCultureIgnoreCase) || x.ModelName.Contains(TextValue, StringComparison.CurrentCultureIgnoreCase));
+            .Where(x => x.BrandName.Contains(TextValue, StringComparison.CurrentCultureIgnoreCase) || x.ModelName
+            .Contains(TextValue, StringComparison.CurrentCultureIgnoreCase));
+            _cachedSearchResults = _searchResults;
         }
         catch (HttpRequestException ex)
         {
             Console.WriteLine($"There was a problem Loading equipment data: {ex.Message}");
+        }
+    }
+
+    protected override void OnParametersSet() => UpdateFilters();
+
+    private void UpdateFilters()
+    {
+        var filters = new List<Func<Equipment, bool>>();
+
+        if (YearProdact is not null && YearProdact > 0)
+        {
+            filters.Add(x => x.Year >= YearProdact);
+        }
+
+        if (Milage is not null && Milage > 0)
+        {
+            filters.Add(x => x.Mileage <= Milage);
+        }
+
+        if (filters.Any())
+        {
+            _searchResults = _cachedSearchResults.Where(trail => filters.All(filter => filter(trail)));
+        }
+        else
+        {
+            _searchResults = _cachedSearchResults;
         }
     }
 
