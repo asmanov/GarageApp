@@ -1,0 +1,18 @@
+﻿<MudCard Elevation="100">
+    <MudCardHeader>@Title</MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body1">@HelpText</MudText>
+    </MudCardContent>
+    <MudCardContent>
+        @ChildContent
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Title { get; set; } = default!;
+    [Parameter, EditorRequired]
+    public string HelpText { get; set; } = default!;
+    [Parameter, EditorRequired]
+    public RenderFragment ChildContent { get; set; } = default!;
+}
