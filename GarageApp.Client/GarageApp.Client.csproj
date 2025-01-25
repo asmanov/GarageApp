@@ -7,14 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.1" PrivateAssets="all" />
-    <PackageReference Include="MudBlazor" Version="7.16.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\GarageApp.Shared\GarageApp.Shared.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.11" PrivateAssets="all" />
+    <PackageReference Include="MudBlazor" Version="7.15.0" />
   </ItemGroup>
 
 </Project>
