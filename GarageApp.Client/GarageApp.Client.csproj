@@ -21,8 +21,4 @@
     <ProjectReference Include="..\GarageApp.Shared\GarageApp.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\ManageEquipment\EditEquipment\" />
-  </ItemGroup>
-
 </Project>
