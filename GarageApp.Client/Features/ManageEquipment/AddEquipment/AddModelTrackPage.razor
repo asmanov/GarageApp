@@ -1,0 +1,34 @@
+﻿@page "/add-model"
+@inject DatabaseService DatabaseService
+
+<PageTitle>Add model</PageTitle>
+
+<MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
+@if (_submitSuccessful)
+{
+    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
+}
+else if (_errorMessage is not null)
+{
+    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
+}
+<ModelTrackForm @ref="_modelTrackForm" OnSubmit="SubmitNewModel" />
+
+@code{
+    private List<BreadcrumbItem> _items =
+    [
+        new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
+        new("Add model", href: null, disabled: true, icon: Icons.Material.Filled.Create)
+    ];
+
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private ModelTrackForm _modelTrackForm = default!;
+
+    private async Task SubmitNewModel(ModelTrack modelTrack)
+    {
+        await DatabaseService.Insert<ModelTrack>(modelTrack);
+        _modelTrackForm.ResetForm();
+        StateHasChanged();
+    }
+}

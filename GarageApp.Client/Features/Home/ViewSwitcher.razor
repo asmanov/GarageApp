@@ -1,0 +1,35 @@
+﻿<MudPaper Style="margin-top: 15px;" Class="d-flex justify-center">
+    <MudPaper>
+        <MudButtonGroup Color="Color.Info" Variant="Variant.Outlined">
+            <MudIconButton Icon="@Icons.Material.Filled.GridView" OnClick="@(() => _mode = ViewMode.Grid)">
+            </MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Filled.TableView" OnClick="@(() => _mode = ViewMode.Table)">
+            </MudIconButton>
+        </MudButtonGroup>
+    </MudPaper>        
+</MudPaper>
+<MudFlexBreak />
+@if (_mode == ViewMode.Grid)
+{
+    @GridTemplate
+}
+else if (_mode == ViewMode.Table)
+{
+    @TableTemplete
+}
+
+
+
+
+  
+
+@code {
+    private ViewMode _mode = ViewMode.Grid;
+
+    [Parameter, EditorRequired]
+    public RenderFragment GridTemplate { get; set; } = default!;
+    [Parameter, EditorRequired]
+    public RenderFragment TableTemplete { get; set; } = default!;
+
+    private enum ViewMode {Grid, Table}
+}

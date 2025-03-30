@@ -1,0 +1,38 @@
+﻿<EditForm Model="_brandTrack" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator />
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue" 
+    Elevation="100">
+        <MudCardHeader Typo="Typo.h1"><b>Add a brand name</b></MudCardHeader>
+        <MudCardContent>
+            <FormSection Title="Марка авто" HelpText="Додайте марку авто">
+                <MudTextField Label="Марку" HelperText="" Variant="Variant.Outlined"
+                @bind-Value="_brandTrack.Name" For="@(() => _brandTrack.Name)" />
+                @* <ValidationMessage For="@(() => _brandTrack.Name)" /> *@
+            </FormSection>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Reset" 
+            Variant="Variant.Filled" Color="Color.Error" 
+            OnClick="@(() => _brandTrack = new BrandTrack())">Reset</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" 
+            Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+    private BrandTrack _brandTrack = new BrandTrack();
+
+    [Parameter, EditorRequired]
+    public Func<BrandTrack, Task> OnSubmit { get; set; } = default!;
+    [Parameter]
+    public BrandTrack? Brand { get; set; }
+
+    public void ResetForm()
+    {
+        _brandTrack = new BrandTrack();
+        StateHasChanged();
+    }
+
+    private async Task SubmitForm() => await OnSubmit(_brandTrack);
+}

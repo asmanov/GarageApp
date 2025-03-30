@@ -1,0 +1,71 @@
+﻿@inject DatabaseService DatabaseService
+
+<EditForm Model="_modelTrack" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator />
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
+    Elevation="100">
+        <MudCardHeader Typo="Typo.h1"><b>Model equipment</b></MudCardHeader>
+        <MudCardContent>
+            <FormSection Title="Основні відомості о моделі" HelpText="Додайте інформацію о моделі">
+                <MudTextField Label="Назва" HelperText="" Variant="Variant.Outlined"
+                @bind-Value="_modelTrack.Name" For="@(() => _modelTrack.Name)" Clearable="true"/>
+                <MudTextField Label="Рівень екологічних норм" HelperText="Emission standart"
+                Variant="Variant.Outlined" @bind-Value="_modelTrack.Euro" 
+                For="@(() => _modelTrack.Euro)" />
+                <MudSelect T="int" @bind-Value="_modelTrack.BrandId" 
+                Variant="Variant.Outlined" Clearable>
+                    @if (BrandTracks?.Any() == true)
+                    {
+                        @foreach (var brand in BrandTracks)
+                        {
+                            <MudSelectItem T="int" Value="@brand.Id">@brand.Name</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </FormSection>
+            <FormSection Title="Додаткови відомості о моделі" HelpText="Додайте інформацію о моделі">
+                <MudTextField Label="Повна маса, кг" HelperText="" 
+                Variant="Variant.Outlined"
+                @bind-Value="_modelTrack.MaxMass"
+                For="@(() => _modelTrack.MaxMass)" Clearable />
+                <MudTextField Label="Маса без навантаженяб кг" HelperText="" 
+                Variant="Variant.Outlined"
+                @bind-Value="_modelTrack.ServMass"
+                For="@(() => _modelTrack.ServMass)" Clearable />
+                <MudTextField Label="Об'єм двигуна, куб. см'" HelperText="" 
+                Variant="Variant.Outlined"
+                @bind-Value="_modelTrack.EngineVolume"
+                For="@(() => _modelTrack.EngineVolume)" Clearable />
+            </FormSection>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Reset"
+            Variant="Variant.Filled" Color="Color.Error"
+            OnClick="@(() => _modelTrack = new ModelTrack())">Reset</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" 
+            Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+    private int _selectedBrandId;
+    private ModelTrack _modelTrack = new ModelTrack();
+    
+    public IEnumerable<BrandTrack> BrandTracks { get; set; } = new List<BrandTrack>();
+    [Parameter, EditorRequired]
+    public Func<ModelTrack, Task> OnSubmit { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        BrandTracks = await DatabaseService.From<BrandTrack>();
+    }
+
+    public void ResetForm()
+    {
+        _modelTrack = new ModelTrack();
+        StateHasChanged();
+    }
+
+    private async Task SubmitForm() => await OnSubmit(_modelTrack);
+}

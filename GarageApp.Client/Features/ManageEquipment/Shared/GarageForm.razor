@@ -1,0 +1,95 @@
+﻿@inject DatabaseService DatabaseService
+
+<EditForm Model="_garageItem" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator />
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
+    Elevation="100">
+        <MudCardHeader Typo="Typo.h1"><b>Обладнання</b></MudCardHeader>
+        <MudCardContent>
+            <FormSection Title="Основні відомості о обладнані" HelpText="Додайте інформацію о обладнані">
+                <MudTextField Label="Реєстраційний номер" HelperText=""
+                Variant="Variant.Outlined" @bind-Value="_garageItem.RegistrationNumber"
+                For="@(() => _garageItem.RegistrationNumber)" />
+                <MudTextField Label="Ідентифікаційний номер транспортного засобу" HelperText=""
+                Variant="Variant.Outlined" @bind-Value="_garageItem.Vin"
+                For="@(() => _garageItem.Vin)" />
+                <MudSelect T="int" @bind-Value="_garageItem.ModelId" Variant="Variant.Outlined">
+                    @if (ModelTracks?.Any() == true)
+                    {
+                        @foreach (var model in ModelTracks)
+                        {
+                            <MudSelectItem T="int" Value="@model.Id">@model.Name</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </FormSection>
+            <FormSection Title="Додаткови відомості о обладнані" HelpText="">
+                <MudTextField Label="Опис" HelperText=""
+                Variant="Variant.Outlined" @bind-Value="_garageItem.Description"
+                For="@(() => _garageItem.Description)" Clearable />
+                <MudNumericField Label="Рік випуску" Variant="Variant.Outlined"
+                @bind-Value="_garageItem.Year" 
+                For="@(() => _garageItem.Year)" Clearable Min="2000" Max="2030"/>
+                <MudNumericField Label="Об'єм паливного бака" HelperText="" Variant="Variant.Outlined"
+                @bind-Value="_garageItem.VolumeFuelTank" For="@(() => _garageItem.VolumeFuelTank)" />
+                <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Accept="image/png, image/jpg">
+                    <ActivatorContent>
+                        <MudFab Color="Color.Secondary"
+                        StartIcon="@Icons.Material.Filled.Image"
+                        Label="Load picture" />
+                    </ActivatorContent>
+                </MudFileUpload>
+            </FormSection>
+            <FormSection Title="Місце розташування" HelpText="">
+                <MudSelect T="int?" @bind-Value="_garageItem.SiteId" Variant="Variant.Outlined" Clearable>
+                    @if (Sites?.Any() == true)
+                    {
+                        @foreach (var site in Sites)
+                        {
+                            <MudSelectItem T="int?" Value="@site.Id">@site.Name</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </FormSection>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Reset"
+            Variant="Variant.Filled" Color="Color.Error"
+            OnClick="@(() => _garageItem = new Garage())">Reset</MudButton>
+            <MudButton ButtonType="ButtonType.Submit"
+            Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+    private Garage _garageItem = new Garage();
+    public IEnumerable<ModelTrack> ModelTracks { get; set; } = new List<ModelTrack>();
+    public IEnumerable<Site> Sites { get; set; } = new List<Site>();
+    private IBrowserFile? _imageFile;
+
+    [Parameter, EditorRequired]
+    public Func<Garage, Task> OnSubmit { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Sites = await DatabaseService.FromS<Site>();
+        ModelTracks = await DatabaseService.FromS<ModelTrack>();
+
+    }
+
+    public void ResetForm()
+    {
+        _garageItem = new Garage();
+        StateHasChanged();
+    }
+
+
+
+    private async Task SubmitForm() => await OnSubmit(_garageItem);
+
+    private void UploadFiles(IBrowserFile file)
+    {
+        _imageFile = file;
+    }
+}

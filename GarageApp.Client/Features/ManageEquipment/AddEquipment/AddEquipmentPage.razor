@@ -1,0 +1,31 @@
+﻿@page "/add-equipment"
+@* @inject Mediator Mediator *@
+
+<PageTitle>Add equipment to Garage</PageTitle>
+
+@* Href="/GarageApp/" *@
+<MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
+@if(_submitSuccessful){
+    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
+}
+else if (_errorMessage is not null){
+    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
+}
+<EquipmentForm @ref="_equipmentForm" OnSubmit="SubmitNewEquipment" />
+
+@code{
+    private List<BreadcrumbItem> _items =
+    [
+        new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
+        new("Add Equipment", href: null, disabled: true, icon: Icons.Material.Filled.Create)
+    ];
+
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private EquipmentForm _equipmentForm = default!;
+
+    private async Task SubmitNewEquipment(EquipmentDto equipment, IBrowserFile? image){
+        
+        return;
+    } 
+}
