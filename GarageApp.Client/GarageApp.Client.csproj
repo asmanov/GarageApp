@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-
     <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.12" />
@@ -20,15 +19,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GarageApp.Shared\GarageApp.Shared.csproj" />
-
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.11" PrivateAssets="all" />
-    <PackageReference Include="MudBlazor" Version="7.15.0" />
-
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ManageEquipment\EditEquipment\" />
+    <Folder Include="Features/ManageEquipment/EditEquipment/" />
   </ItemGroup>
 
 </Project>
