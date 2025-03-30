@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features/ManageEquipment/EditEquipment/" />
+    <Folder Include="Features\ManageEquipment\EditEquipment\" />
   </ItemGroup>
 
 </Project>
