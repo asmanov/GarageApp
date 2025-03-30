@@ -1,12 +1,22 @@
 ﻿@inherits LayoutComponentBase
+@inject AuthService AuthService
 
 <MudThemeProvider />
 <MudPopoverProvider />
+<MudSnackbarProvider />
 
 <MudLayout>
     <Header />
     
-    <MudMainContent>
-        @Body
-    </MudMainContent>
+    <AuthorizeView>
+            <Authorized>
+            <MudMainContent>
+                @Body
+            </MudMainContent>
+            </Authorized>
+            <NotAuthorized>
+                <Login/>
+            </NotAuthorized>
+    </AuthorizeView>
+  
 </MudLayout>

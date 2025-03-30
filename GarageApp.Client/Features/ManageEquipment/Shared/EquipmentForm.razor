@@ -1,19 +1,6 @@
-﻿@page "/add-equipment"
-@* @inject Mediator Mediator *@
-
-<PageTitle>Add equipment to Garage</PageTitle>
-
-@* Href="/GarageApp/" *@
-<MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
-@if(_submitSuccessful){
-    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
-}
-else if (_errorMessage is not null){
-    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
-}
-<EditForm Model="_equipment" OnInvalidSubmit="SubmitForm">
+﻿<EditForm Model="_equipment" OnInvalidSubmit="SubmitForm">
     <FluentValidationValidator />
-    <MudCard Style="margin-left: 20px; margin-right: 20px" Elevation="100">
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue" Elevation="100">
         <MudCardHeader Typo="Typo.h1"><h3><b>Add a equipment</b></h3></MudCardHeader>
         <MudCardContent>
             <FormSection Title="Основные сведения об авто" HelpText="Додайте інформацію о марке, моделі, року виготовлення та VIN">
@@ -23,12 +10,19 @@ else if (_errorMessage is not null){
                 <MudTextField Label="Модель" Variant="Variant.Outlined"
                 @bind-Value="_equipment.ModelName" For="@(() => _equipment.ModelName)" />
                 <ValidationMessage For="@(() => _equipment.ModelName)" />
-                <MudTextField Label="Ідентифікаційний номер ТЗ" Variant="Variant.Outlined"              
+                <MudTextField Label="Ідентифікаційний номер ТЗ" Variant="Variant.Outlined"
                 @bind-Value="_equipment.Vin" For="@(() => _equipment.Vin)" />
                 <ValidationMessage For="@(() => _equipment.Vin)" />
                 <MudTextField Label="Рік випуску" Variant="Variant.Outlined"
                 @bind-Value="_equipment.Year" For="@(() => _equipment.Year)" />
                 <ValidationMessage For="@(() => _equipment.Year)" />
+                <MudFileUpload T="IBrowserFile" Accept=".png, .jpg" OnFilesChanged="LoadEquipImage">
+                    <ActivatorContent>
+                        <MudFab Color="Color.Info"
+                        StartIcon="@Icons.Material.Filled.Image"
+                        Label="Load picture" />
+                    </ActivatorContent>
+                </MudFileUpload>
             </FormSection>
             <FormSection Title="Реєстраційні дані" HelpText="Додайте державний номер">
                 <MudTextField Label="Державний номер" HelperText="" Variant="Variant.Outlined"
@@ -49,33 +43,25 @@ else if (_errorMessage is not null){
         </MudCardContent>
         <MudCardActions>
             <MudButton ButtonType="ButtonType.Reset" Variant="Variant.Filled" Color="Color.Error" OnClick="@(() => _equipment = new EquipmentDto())">Reset</MudButton>
-            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Submit</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
         </MudCardActions>
     </MudCard>
 </EditForm>
 
-@code{
-    private List<BreadcrumbItem> _items =
-    [
-        new("Home", href: "/", icon: Icons.Material.Filled.Home),
-    new("Add Equipment", href: null, disabled: true, icon: Icons.Material.Filled.Create)
-    ];
-
+@code {
     private EquipmentDto _equipment = new EquipmentDto();
-    private bool _submitSuccessful;
-    private string? _errorMessage;
+    private IBrowserFile? _equipImage;
 
+    [Parameter]
+    public Func<EquipmentDto, IBrowserFile?, Task> OnSubmit { get; set; }
 
-    private async Task SubmitForm(){
-        //var response = await Mediator.Send(new AddEquipmentRequest(_equipment));
-        // if(response.Id == "fail"){
-        //     _errorMessage = "Проблеми з збереженням нового обладнання";
-        //     _submitSuccessful = false;
-        //     return;
-        // }
-
+    public void ResetForm(){
         _equipment = new EquipmentDto();
-        _errorMessage = null;
-        _submitSuccessful = true;
+        _equipImage = null;
     }
+
+    private async Task SubmitForm() => await OnSubmit(_equipment, _equipImage);
+
+    private void LoadEquipImage(InputFileChangeEventArgs e) => _equipImage = e.File;
+
 }

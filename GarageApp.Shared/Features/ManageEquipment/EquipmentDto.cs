@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace GarageApp.Shared.Features.ManageEquipment
 {
@@ -16,7 +11,7 @@ namespace GarageApp.Shared.Features.ManageEquipment
         public string? Description { get; set; }
         public int? Year { get; set; }
         public int Mileage { get; set; }
-        public string? Vin {  get; set; }
+        public string? Vin { get; set; }
         public int VolumeFuelTank { get; set; }
     }
 

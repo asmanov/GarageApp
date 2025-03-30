@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/GarageApp/"
 @inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
@@ -18,12 +18,35 @@
             }
             else
             {
-
-
-                @foreach (var equip in _equips)
-                {
-                    <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
-                }
+                <ViewSwitcher>
+                    <GridTemplate>
+                        @foreach (var equip in _equips)
+                        {
+                            <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
+                        }
+                    </GridTemplate>
+                    <TableTemplete>
+                        <MudSimpleTable Hover="true" Dense="true" FixedHeader="true" Style="margin-top: 15px">
+                    <thead>
+                        <tr>
+                            <th>Держ. номер</th>
+                            <th>Марка</th>
+                            <th>Модель</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var equip in _equips)
+                        {
+                            <tr>
+                                <td>@equip.Id</td>
+                                <td>@equip.BrandName</td>
+                                <td>@equip.ModelName</td>
+                            </tr>
+                        }
+                    </tbody>
+                        </MudSimpleTable>
+                    </TableTemplete>
+                </ViewSwitcher>   
             }
         </MudGrid>
     

@@ -1,0 +1,34 @@
+﻿@page "/add-site"
+@inject DatabaseService DatabaseService
+
+<PageTitle>Add site</PageTitle>
+
+<MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
+@if (_submitSuccessful)
+{
+    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
+}
+else if (_errorMessage is not null)
+{
+    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
+}
+<SiteForm @ref="_siteForm" OnSubmit="SubmitNewSite" />
+
+@code {
+    private List<BreadcrumbItem> _items =
+    [
+       new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
+       new("Add site", href: null, disabled: true, icon: Icons.Material.Filled.Create)
+    ];
+
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private SiteForm _siteForm = default!;
+
+    private async Task SubmitNewSite(Site site)
+    {
+        await DatabaseService.Insert<Site>(site);
+        _siteForm.ResetForm();
+        StateHasChanged();
+    }
+}

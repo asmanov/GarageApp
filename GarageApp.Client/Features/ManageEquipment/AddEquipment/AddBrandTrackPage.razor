@@ -1,0 +1,35 @@
+﻿@page "/add-brand"
+@inject DatabaseService DatabaseService
+
+<PageTitle>Add brand</PageTitle>
+
+<MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
+@if (_submitSuccessful)
+{
+    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
+}
+else if (_errorMessage is not null)
+{
+    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
+}
+<BrandTrackForm @ref="_brandTrackForm" OnSubmit="SubmitNewBrand" />
+
+@code {
+    private List<BreadcrumbItem> _items =
+    [
+       new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
+       new("Add brand", href: null, disabled: true, icon: Icons.Material.Filled.Create)
+    ];
+
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private BrandTrackForm _brandTrackForm = default!;
+
+    private async Task SubmitNewBrand(BrandTrack brandTrack)
+    {
+        await DatabaseService.Insert<BrandTrack>(brandTrack);
+        _brandTrackForm.ResetForm();
+        StateHasChanged();
+        return;
+    }
+}

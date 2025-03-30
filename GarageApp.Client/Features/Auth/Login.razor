@@ -1,0 +1,49 @@
+﻿@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
+<MudGrid Justify="Justify.FlexStart">
+    <MudItem xs="12" sm="6" md="4" lg="3">
+        <MudContainer Elevation="5" Class="d-flex justify-center align-center" Style="height:100vh !important">
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Welcome</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField Label="Email" @bind-Value="Email" Variant="Variant.Outlined"></MudTextField>
+                    <MudTextField Label="Password" @bind-Value="Password" Variant="Variant.Outlined" InputType="InputType.Password"></MudTextField>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" FullWidth Color="Color.Info"
+                               OnClick="OnClickLogin">Login</MudButton>
+                    <MudSpacer />
+                    <MudButton Variant="Variant.Filled" FullWidth Color="Color.Info"
+                               OnClick="OnClickSingup">SingUp</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudContainer>
+    </MudItem>
+    <MudItem lg="9">
+            
+     </MudItem>
+</MudGrid>
+
+@code {
+    protected string Email { get; set; } = default!;
+    protected string Password { get; set; } = default!;
+
+    public async Task OnClickLogin()
+    {
+        await AuthService.Login(Email, Password);
+        Snackbar.Add("Login successful");
+        NavigationManager.NavigateTo($"/GarageApp/");
+        StateHasChanged();
+    }
+
+    public async Task OnClickSingup()
+    {
+        await AuthService.Singup(Email, Password);
+        Snackbar.Add("Singup successful");
+        NavigationManager.NavigateTo($"/login");
+    }
+}

@@ -1,0 +1,39 @@
+﻿<EditForm Model="_site" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator />
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
+             Elevation="100">
+        <MudCardHeader Typo="Typo.h1"><b>Add a brand name</b></MudCardHeader>
+        <MudCardContent>
+            <FormSection Title="Площадка" HelpText="Додайте інформацію стосовно площадки">
+                <MudTextField Label="Найменування площадки" HelperText="" Variant="Variant.Outlined"
+                              @bind-Value="_site.Name" For="@(() => _site.Name)" />
+                <MudTextField Label="Об'єм ємністі" HelperText="" Variant="Variant.Outlined"
+                              @bind-Value="_site.FuelTank" For="@(() => _site.FuelTank)" />
+            </FormSection>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Reset"
+                       Variant="Variant.Filled" Color="Color.Error"
+                       OnClick="@(() => _site = new Site())">Reset</MudButton>
+            <MudButton ButtonType="ButtonType.Submit"
+                       Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+    private Site _site = new Site();
+
+    [Parameter, EditorRequired]
+    public Func<Site, Task> OnSubmit { get; set; } = default!;
+    [Parameter]
+    public Site? Site { get; set; }
+
+    public void ResetForm()
+    {
+        _site = new Site();
+        StateHasChanged();
+    }
+
+    private async Task SubmitForm() => await OnSubmit(_site);
+}
