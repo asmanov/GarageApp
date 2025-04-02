@@ -27,7 +27,9 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
     ;
 builder.Services.AddAuthorizationCore();
 
-
+//----------SUPABASE
+var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
+var key = Environment.GetEnvironmentVariable("SUPABASE_API_KEY");
 
 builder.Services.AddScoped<Supabase.Client>(
     provider => new Supabase.Client(
