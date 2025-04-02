@@ -38,15 +38,11 @@
     private IEnumerable<Equipment>? _searchResults;
     private IEnumerable<Equipment> _cachedSearchResults = Array.Empty<Equipment>();
     private Equipment? _selectedEquip;
-<<<<<<< HEAD
     private List<BreadcrumbItem> _items =
     [
         new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
         new("Search", href: null, disabled: true, icon: Icons.Material.Filled.Search)
     ];
-=======
-
->>>>>>> 1efaeff588e3cde367d30eb2d19d7329fb418cb3
 
     [Parameter] public string TextValue { get; set; } = default!;
     [Parameter, SupplyParameterFromQuery] public int? YearProdact { get; set; }

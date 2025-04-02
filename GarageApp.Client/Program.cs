@@ -13,7 +13,6 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-<<<<<<< HEAD
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 
@@ -62,6 +61,4 @@ builder.Services.AddScoped<StorageService>();
 //Note the creation as a singleton.
 builder.Services.AddSingleton(provider => new Supabase.Client(url, key, options));
 
-=======
->>>>>>> 1efaeff588e3cde367d30eb2d19d7329fb418cb3
 await builder.Build().RunAsync();

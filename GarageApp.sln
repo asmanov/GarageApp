@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageApp.Client", "GarageApp.Client\GarageApp.Client.csproj", "{69929524-3689-4F18-8DF0-7C4011F360B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageApp.Shared", "GarageApp.Shared\GarageApp.Shared.csproj", "{C01D771A-9FE9-6653-6382-4F319954A9DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{69929524-3689-4F18-8DF0-7C4011F360B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69929524-3689-4F18-8DF0-7C4011F360B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69929524-3689-4F18-8DF0-7C4011F360B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01D771A-9FE9-6653-6382-4F319954A9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01D771A-9FE9-6653-6382-4F319954A9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01D771A-9FE9-6653-6382-4F319954A9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01D771A-9FE9-6653-6382-4F319954A9DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
