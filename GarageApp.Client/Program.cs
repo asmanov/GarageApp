@@ -27,9 +27,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
     ;
 builder.Services.AddAuthorizationCore();
 
-//----------SUPABASE
-var url = "https://iljnlsswbkazgcgmiwns.supabase.co";
-var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlsam5sc3N3YmthemdjZ21pd25zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyNzQ3NTIsImV4cCI6MjA1MTg1MDc1Mn0.JbpyCAnYdU9VnQvT-HMw1LGrM5VIwUbOefEoWkpfwHw";
+
 
 builder.Services.AddScoped<Supabase.Client>(
     provider => new Supabase.Client(
