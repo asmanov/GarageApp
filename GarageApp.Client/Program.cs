@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using Supabase;
+using static System.Net.WebRequestMethods;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -30,6 +31,7 @@ builder.Services.AddAuthorizationCore();
 //----------SUPABASE
 var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
 var key = Environment.GetEnvironmentVariable("SUPABASE_API_KEY");
+
 
 builder.Services.AddScoped<Supabase.Client>(
     provider => new Supabase.Client(
