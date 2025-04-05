@@ -17,8 +17,7 @@
                     <MudButton Variant="Variant.Filled" FullWidth Color="Color.Info"
                                OnClick="OnClickLogin">Login</MudButton>
                     <MudSpacer />
-                    <MudButton Variant="Variant.Filled" FullWidth Color="Color.Info"
-                               OnClick="OnClickSingup">SingUp</MudButton>
+                    
                 </MudCardActions>
             </MudCard>
         </MudContainer>
@@ -36,7 +35,7 @@
     {
         await AuthService.Login(Email, Password);
         Snackbar.Add("Login successful");
-        NavigationManager.NavigateTo($"/GarageApp/");
+        NavigationManager.NavigateTo($"/GarageApp");
         StateHasChanged();
     }
 
