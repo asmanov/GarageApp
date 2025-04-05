@@ -6,7 +6,7 @@ name: Build and Deploy Blazor WebAssembly
 on:
   push:
     branches: [ "master" ]
-      
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +20,16 @@ jobs:
       with:
         dotnet-version: '8.0.x'  # Версия .NET, которую вы используете
 
+    - name: Set Environment Variables
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
+      run: echo "Environment variables set"
+
     - name: Publish Blazor WebAssembly
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
       run: dotnet publish -c Release -o publish
 
     - name: Deploy to GitHub Pages
@@ -29,6 +38,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./publish/wwwroot
         publish_branch: gh-pages
+
 
           
           
