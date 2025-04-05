@@ -30,7 +30,7 @@ jobs:
       env:
         SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
         SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
-      run: dotnet publish -c Release -o publish
+      run: dotnet publish -c Release -o publish /p:BasePath="/GarageApp/"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
