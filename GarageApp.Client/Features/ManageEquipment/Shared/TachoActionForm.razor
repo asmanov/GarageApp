@@ -1,0 +1,65 @@
+﻿@inject DatabaseService DatabaseService
+
+<EditForm Model="_tachoAction" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator />
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
+    Elevation="100">
+        <MudCardHeader Typo="Typo.h1"><b>Add a tacho info</b></MudCardHeader>
+        <MudCardContent>
+            <FormSection Title="Площадка" HelpText="Додайте інформацію стосовно площадки">
+                <MudDatePicker Label="Start date" @bind-Date="DateStart" />
+                <MudDatePicker Label="Start date" @bind-Date="DateEnd" />
+                <MudSelect T="int" @bind-Value="_tachoAction.Garage.Id" Variant="Variant.Outlined">
+                    @if (GarageList?.Any() == true)
+                    {
+                        @foreach (var item in GarageList)
+                        {
+                            <MudSelectItem T="int" Value="@item.Id">@item.RegistrationNumber</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </FormSection>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Reset"
+            Variant="Variant.Filled" Color="Color.Error"
+            OnClick="@(() => _tachoAction = new TachoAction())">Reset</MudButton>
+            <MudButton ButtonType="ButtonType.Submit"
+            Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+    private TachoAction _tachoAction = new TachoAction();
+    private DateTime? DateStart
+    {
+        get => TachoAction.Start != default ? TachoAction.Start.ToDateTime(TimeOnly.MinValue) : null;
+        set => TachoAction.Start = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+    }
+    private DateTime? DateEnd
+    {
+        get => TachoAction.End != default ? TachoAction.End.ToDateTime(TimeOnly.MinValue) : null;
+        set => TachoAction.End = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+    }
+
+    public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
+
+    [Parameter, EditorRequired]
+    public Func<TachoAction, Task> OnSubmit { get; set; }
+    [Parameter]
+    public TachoAction? TachoAction { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        GarageList = await DatabaseService.FromS<Garage>();
+    }
+
+    public void ResetForm()
+    {
+        _tachoAction = new TachoAction();
+        StateHasChanged();
+    }
+
+    private async Task SubmitForm() => await OnSubmit(_tachoAction);
+}
