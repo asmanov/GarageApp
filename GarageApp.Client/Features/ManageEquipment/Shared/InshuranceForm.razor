@@ -12,7 +12,7 @@
                     <MudSelectItem Value="@("ОСЦПВ")">ОСЦПВ</MudSelectItem>
                     <MudSelectItem Value="@("КАСКО")">КАСКО</MudSelectItem>
                 </MudSelect>
-                <MudNumericField @bind-Value="_inshurance.Nomber" Variant="Variant.Outlined"></MudNumericField>
+                <MudNumericField @bind-Value="_inshurance.Nomber" Variant="Variant.Outlined" Label="Номер страховки"></MudNumericField>
                 <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" Variant="Variant.Outlined" />
                 <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateEnd" Variant="Variant.Outlined" />
                 <MudSelect T="int" @bind-Value="_inshurance.Track" Variant="Variant.Outlined">
@@ -24,7 +24,7 @@
                         }
                     }
                 </MudSelect>
-                <MudNumericField @bind-Value="_inshurance.Cost" Variant="Variant.Outlined"></MudNumericField>
+                <MudNumericField @bind-Value="_inshurance.Cost" Variant="Variant.Outlined" Label="Вартість страховки"></MudNumericField>
             </FormSection>
         </MudCardContent>
         <MudCardActions>
