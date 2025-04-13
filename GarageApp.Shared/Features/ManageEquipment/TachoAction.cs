@@ -4,6 +4,7 @@ using Supabase.Postgrest.Models;
 
 namespace GarageApp.Shared.Features.ManageEquipment
 {
+    [Table("tacho_actions")]
     public class TachoAction : BaseModelApp
     {
         [Column("start")]
