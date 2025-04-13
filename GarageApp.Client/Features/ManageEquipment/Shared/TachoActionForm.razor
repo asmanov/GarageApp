@@ -6,9 +6,9 @@
     Elevation="100">
         <MudCardHeader Typo="Typo.h1"><b>Add a tacho info</b></MudCardHeader>
         <MudCardContent>
-            <FormSection Title="Адаптвція тахографа" HelpText="Вкажить дату проведення адаптації тахографа">
-                <MudDatePicker Label="Start date" @bind-Date="DateStart" />
-                <MudDatePicker Label="Start date" @bind-Date="DateEnd" />
+            <FormSection Title="Адаптація тахографа" HelpText="Вкажить дату проведення адаптації тахографа">
+                <MudDatePicker PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" />
+                <MudDatePicker PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateEnd" />
                 <MudSelect T="int" @bind-Value="_tachoAction.Track" Variant="Variant.Outlined">
                     @if (GarageList?.Any() == true)
                     {
