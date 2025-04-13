@@ -3,16 +3,16 @@ using Supabase.Postgrest.Models;
 
 namespace GarageApp.Shared.Features.ManageEquipment
 {
-    [Table("inspection")]
+    [Table("inspections")]
     public class Inspection : BaseModelApp
     {
         [Column("start")]
         public DateOnly Start { get; set; }
 
         [Column("end")]
-        public DateOnly End { get; set; }
+        public DateOnly End { get; set; } = DateOnly.FromDateTime(DateTime.Now.AddYears(1));
 
-        [Reference(typeof(Garage))]
-        public Garage Garage { get; set; } = default!;
+        [Column("track")]
+        public int Track { get; set; }
     }
 }

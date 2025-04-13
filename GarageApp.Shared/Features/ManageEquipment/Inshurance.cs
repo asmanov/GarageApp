@@ -3,6 +3,7 @@ using Supabase.Postgrest.Models;
 
 namespace GarageApp.Shared.Features.ManageEquipment
 {
+    [Table("inshurance")]
     public class Inshurance : BaseModelApp
     {
         [Column("type")]
@@ -20,7 +21,7 @@ namespace GarageApp.Shared.Features.ManageEquipment
         [Column("cost")]
         public double Cost { get; set; }
 
-        [Reference(typeof(Garage))]
-        public Garage Garage { get; set; } = default!;
+        [Column("track")]
+        public int Track { get; set; }
     }
 }
