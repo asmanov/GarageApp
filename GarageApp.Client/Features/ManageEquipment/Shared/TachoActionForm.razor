@@ -6,10 +6,10 @@
     Elevation="100">
         <MudCardHeader Typo="Typo.h1"><b>Add a tacho info</b></MudCardHeader>
         <MudCardContent>
-            <FormSection Title="Площадка" HelpText="Додайте інформацію стосовно площадки">
+            <FormSection Title="Адаптвція тахографа" HelpText="Вкажить дату проведення адаптації тахографа">
                 <MudDatePicker Label="Start date" @bind-Date="DateStart" />
                 <MudDatePicker Label="Start date" @bind-Date="DateEnd" />
-                <MudSelect T="int" @bind-Value="_tachoAction.Garage.Id" Variant="Variant.Outlined">
+                <MudSelect T="int" @bind-Value="_tachoAction.Track" Variant="Variant.Outlined">
                     @if (GarageList?.Any() == true)
                     {
                         @foreach (var item in GarageList)

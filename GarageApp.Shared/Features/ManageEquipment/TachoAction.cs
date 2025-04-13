@@ -11,7 +11,7 @@ namespace GarageApp.Shared.Features.ManageEquipment
         [Column("end")]
         public DateOnly End { get; set; }
 
-        [Reference(typeof(Garage))]
-        public Garage Garage { get; set; } = default!;
+        [Column("track")]
+        public int Track { get; set; }
     }
 }
