@@ -34,13 +34,13 @@
     private TachoAction _tachoAction = new TachoAction();
     private DateTime? DateStart
     {
-        get => TachoAction.Start != default ? TachoAction.Start.ToDateTime(TimeOnly.MinValue) : null;
-        set => TachoAction.Start = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+        get => _tachoAction.Start != default ? _tachoAction.Start.ToDateTime(TimeOnly.MinValue) : null;
+        set => _tachoAction.Start = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
     }
     private DateTime? DateEnd
     {
-        get => TachoAction.End != default ? TachoAction.End.ToDateTime(TimeOnly.MinValue) : null;
-        set => TachoAction.End = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+        get => _tachoAction.End != default ? _tachoAction.End.ToDateTime(TimeOnly.MinValue) : null;
+        set => _tachoAction.End = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
     }
 
     public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
@@ -52,6 +52,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+
         GarageList = await DatabaseService.FromS<Garage>();
     }
 
