@@ -1,15 +1,21 @@
 ﻿@inject DatabaseService DatabaseService
 
-<EditForm Model="_inspection" OnValidSubmit="SubmitForm">
+<EditForm Model="_inshurance" OnValidSubmit="SubmitForm">
     <FluentValidationValidator />
     <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
              Elevation="100">
         <MudCardHeader Typo="Typo.h1"><b>Add inspection info</b></MudCardHeader>
         <MudCardContent>
             <FormSection Title="Техничний огляд" HelpText="Вкажить дату проведення техничного огляда">
+                <MudSelect Style="margin-bottom: 20px;" T="string" @bind-bind-Value="_inshurance.Type" Label="Оберить тип страховки">
+                    <MudSelectItem Value="@("Зелена карта")">Зелена карта</MudSelectItem>
+                    <MudSelectItem Value="@("ОСЦПВ")">ОСЦПВ</MudSelectItem>
+                    <MudSelectItem Value="@("КАСКО")">КАСКО</MudSelectItem>
+                </MudSelect>
+                <MudNumericField @bind-Value="_inshurance.Nomber"></MudNumericField>
                 <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" />
                 <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateEnd" />
-                <MudSelect T="int" @bind-Value="_inspection.Track" Variant="Variant.Outlined">
+                <MudSelect T="int" @bind-Value="_inshurance.Track" Variant="Variant.Outlined">
                     @if (GarageList?.Any() == true)
                     {
                         @foreach (var item in GarageList)
@@ -18,12 +24,13 @@
                         }
                     }
                 </MudSelect>
+                <MudNumericField @bind-Value="_inshurance.Cost"></MudNumericField>
             </FormSection>
         </MudCardContent>
         <MudCardActions>
             <MudButton ButtonType="ButtonType.Reset"
                        Variant="Variant.Filled" Color="Color.Error"
-                       OnClick="@(() => _inspection = new Inspection())">Reset</MudButton>
+                       OnClick="@(() => _inshurance = new Inshurance())">Reset</MudButton>
             <MudButton ButtonType="ButtonType.Submit"
                        Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
         </MudCardActions>
@@ -31,22 +38,22 @@
 </EditForm>
 
 @code {
-    private Inspection _inspection = new Inspection();
+    private Inshurance _inshurance = new Inshurance();
     private DateTime? DateStart
     {
-        get => _inspection.Start != default ? _inspection.Start.ToDateTime(TimeOnly.MinValue) : null;
-        set => _inspection.Start = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+        get => _inshurance.Start != default ? _inshurance.Start.ToDateTime(TimeOnly.MinValue) : null;
+        set => _inshurance.Start = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
     }
     private DateTime? DateEnd
     {
-        get => _inspection.End != default ? _inspection.End.ToDateTime(TimeOnly.MinValue) : null;
-        set => _inspection.End = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+        get => _inshurance.End != default ? _inshurance.End.ToDateTime(TimeOnly.MinValue) : null;
+        set => _inshurance.End = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
     }
 
     public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
 
     [Parameter, EditorRequired]
-    public Func<Inspection, Task> OnSubmit { get; set; }
+    public Func<Inshurance, Task> OnSubmit { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -56,9 +63,9 @@
 
     public void ResetForm()
     {
-        _inspection = new Inspection();
+        _inshurance = new Inshurance();
         StateHasChanged();
     }
 
-    private async Task SubmitForm() => await OnSubmit(_inspection);
+    private async Task SubmitForm() => await OnSubmit(_inshurance);
 }

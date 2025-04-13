@@ -27,13 +27,7 @@ namespace GarageApp.Shared.Features.ManageEquipment
         [Column("model_id")]
         public int ModelId { get; set; }
 
-        //[Reference(typeof(ModelTrack), foreignKey: "model_id")]
-        //public ModelTrack Model { get; set; } = default!;
-
         [Column("site_id")]
         public int? SiteId { get; set; }
-
-        //[Reference(typeof(Site), foreignKey: "site_id")]
-        //public Site? Site { get; set; }
     }
 }

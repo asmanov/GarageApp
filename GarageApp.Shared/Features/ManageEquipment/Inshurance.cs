@@ -7,7 +7,7 @@ namespace GarageApp.Shared.Features.ManageEquipment
     public class Inshurance : BaseModelApp
     {
         [Column("type")]
-        public string Type { get; set; }
+        public string Type { get; set; } = default!;
 
         [Column("nomber")]
         public int Nomber { get; set; }
