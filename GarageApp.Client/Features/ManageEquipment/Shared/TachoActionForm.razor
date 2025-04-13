@@ -40,7 +40,7 @@
     private DateTime? DateEnd
     {
         get => _tachoAction.End != default ? _tachoAction.End.ToDateTime(TimeOnly.MinValue) : null;
-        set => _tachoAction.End = value.HasValue ? DateOnly.FromDateTime(value.Value.AddYears(2)) : default;
+        set => _tachoAction.End = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
     }
 
     public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
