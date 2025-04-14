@@ -7,14 +7,14 @@
         <MudCardHeader Typo="Typo.h1"><b>Add inspection info</b></MudCardHeader>
         <MudCardContent>
             <FormSection Title="Техничний огляд" HelpText="Вкажить дату проведення техничного огляда">
-                <MudSelect Variant="Variant.Outlined" Style="margin-bottom: 20px;" T="string" @bind-bind-Value="_inshurance.Type" Label="Оберить тип страховки">
+                <MudSelect Variant="Variant.Outlined" Style="margin-bottom: 10px;" T="string" @bind-bind-Value="_inshurance.Type" Label="Оберить тип страховки">
                     <MudSelectItem Value="@("Зелена карта")">Зелена карта</MudSelectItem>
                     <MudSelectItem Value="@("ОСЦПВ")">ОСЦПВ</MudSelectItem>
                     <MudSelectItem Value="@("КАСКО")">КАСКО</MudSelectItem>
                 </MudSelect>
                 <MudNumericField @bind-Value="_inshurance.Nomber" Variant="Variant.Outlined" Label="Номер страховки"></MudNumericField>
-                <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" Variant="Variant.Outlined" />
-                <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateEnd" Variant="Variant.Outlined" />
+                <MudDatePicker Style="margin-bottom: 10px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" Variant="Variant.Outlined" />
+                <MudDatePicker Style="margin-bottom: 10px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="End date" @bind-Date="DateEnd" Variant="Variant.Outlined" />
                 <MudSelect T="int" @bind-Value="_inshurance.Track" Variant="Variant.Outlined" Label="Регістрціоний номер авто">
                     @if (GarageList?.Any() == true)
                     {
