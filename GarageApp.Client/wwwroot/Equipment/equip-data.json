@@ -12,7 +12,7 @@
     "id": "BC1163TB",
     "modelName": "XF 460 FT",
     "brandName": "DAF",
-    "image": "equipImage/BC1163TB.jpg",
+    "image": "https://iljnlsswbkazgcgmiwns.supabase.co/storage/v1/object/sign/GarageImage/BC1163TB.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJHYXJhZ2VJbWFnZS9CQzExNjNUQi5qcGciLCJpYXQiOjE3NDQ5MTA2MDIsImV4cCI6MTc3NjQ0NjYwMn0.CNK7rz7uhlXsNGK6zXJR6HxDqwdHPMgYVPF-uCglPBA",
     "description": "Track",
     "year": 2016,
     "mileage": 600000
