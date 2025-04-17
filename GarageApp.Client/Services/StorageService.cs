@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿ using System.Diagnostics;
 using MudBlazor;
 using Supabase.Storage.Interfaces;
 

@@ -39,7 +39,7 @@
     "id": "KE7971AK",
     "modelName": "XF 460 FT",
     "brandName": "DAF",
-    "image": "equipImage/7971.jpg",
+    "image": "https://iljnlsswbkazgcgmiwns.supabase.co/storage/v1/object/sign/GarageImage/KE7971AK.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJHYXJhZ2VJbWFnZS9LRTc5NzFBSy5qcGciLCJpYXQiOjE3NDQ5MTAzMDQsImV4cCI6MTc3NjQ0NjMwNH0.E7prKA-IWqpqRN3qTMriVXu8NgnP1v1KUvKKQBwnnAE",
     "description": "Track",
     "year": 2015,
     "mileage": 600000
