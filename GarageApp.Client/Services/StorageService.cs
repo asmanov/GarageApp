@@ -29,8 +29,6 @@ namespace GarageApp.Client.Services
         {
             var bucket = _storage.From(bucketName);
 
-            // TODO: verify if there is a better way to do it
-            // Maybe this isn't a good way to do it
             var bytesData = await StreamToBytesAsync(streamData);
 
             var fileExtension = fileName.Split(".").Last();
@@ -39,8 +37,6 @@ namespace GarageApp.Client.Services
 
             saveName = saveName.Replace("/", "_").Replace(" ", "_").Replace(":", "_");
             saveName = saveName + "." + fileExtension;
-
-            // Console.WriteLine(saveName);
 
             return await bucket.Upload(bytesData, saveName);
         }
