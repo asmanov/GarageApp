@@ -28,7 +28,14 @@ else if (_errorMessage is not null)
     private async Task SubmitNewItem(Garage item)
     {
         var response = await DatabaseService.Insert<Garage>(item);
-        Console.WriteLine(response);
+        if(response != null)
+        {
+            _submitSuccessful = true;
+        }
+        else
+        {
+            _errorMessage = "Ошибка при добавлении записи";
+        }
         _garageForm.ResetForm();
         StateHasChanged();
     }
