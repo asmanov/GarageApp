@@ -1,17 +1,12 @@
 ﻿@page "/add-item"
 @inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
+@inject StorageService StorageService
 
 <PageTitle>Add model</PageTitle>
 
 <MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
-@if (_submitSuccessful)
-{
-    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
-}
-else if (_errorMessage is not null)
-{
-    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
-}
+
 <GarageForm @ref="_garageForm" OnSubmit="SubmitNewItem" />
 
 @code {
@@ -21,22 +16,46 @@ else if (_errorMessage is not null)
         new("Add item", href: null, disabled: true, icon: Icons.Material.Filled.Create)
     ];
 
-    private bool _submitSuccessful;
-    private string? _errorMessage;
     private GarageForm _garageForm = default!;
 
-    private async Task SubmitNewItem(Garage item)
+    private async Task SubmitNewItem(Garage item, IBrowserFile? image)
     {
         var response = await DatabaseService.Insert<Garage>(item);
-        if(response != null)
+        if(response == null)
         {
-            _submitSuccessful = true;
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
         }
-        else
+
+        if(image is null)
         {
-            _errorMessage = "Ошибка при добавлении записи";
+            Snackbar.Add("Запись успешно добавлена");
+            _garageForm.ResetForm();
+            StateHasChanged();
+            return;
         }
-        _garageForm.ResetForm();
+
+        var imageresponse = await ProcessImage(item.RegistrationNumber, image);
+
+        if (imageresponse)
+        {
+            _garageForm.ResetForm();
+        }
+
         StateHasChanged();
+    }
+
+    private async Task<bool> ProcessImage(string registrationNomber, IBrowserFile image)
+    {
+        var imageUploadResponse = await StorageService.UploadFile("GarageImage", image.OpenReadStream(), image.Name, registrationNomber);
+
+        if (imageUploadResponse == null)
+        {
+            Snackbar.Add("Your trail was saved, but there was a problem uploading the image.");
+            return false;
+        }
+
+        return true;
     }
 }

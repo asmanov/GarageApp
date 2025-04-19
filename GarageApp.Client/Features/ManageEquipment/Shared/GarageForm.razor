@@ -69,7 +69,7 @@
     private IBrowserFile? _imageFile;
 
     [Parameter, EditorRequired]
-    public Func<Garage, Task> OnSubmit { get; set; } = default!;
+    public Func<Garage, IBrowserFile?, Task> OnSubmit { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -80,15 +80,16 @@
     public void ResetForm()
     {
         _garageItem = new Garage();
-        StateHasChanged();
+        _imageFile = null;
+        // StateHasChanged();
     }
 
 
 
-    private async Task SubmitForm() => await OnSubmit(_garageItem);
+    private async Task SubmitForm() => await OnSubmit(_garageItem, _imageFile);
 
     private void UploadFiles(IBrowserFile file)
     {
-        
+        _imageFile = file;
     }
 }

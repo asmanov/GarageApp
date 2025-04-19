@@ -25,7 +25,7 @@ namespace GarageApp.Client.Services
             _storage = client.Storage;
         }
 
-        public async Task<string> UploadFile(String bucketName, Stream streamData, String fileName)
+        public async Task<string> UploadFile(String bucketName, Stream streamData, String fileName, string registrationNomber)
         {
             var bucket = _storage.From(bucketName);
 
@@ -33,7 +33,7 @@ namespace GarageApp.Client.Services
 
             var fileExtension = fileName.Split(".").Last();
 
-            var saveName = "File_" + DateTime.Now;
+            var saveName = registrationNomber;
 
             saveName = saveName.Replace("/", "_").Replace(" ", "_").Replace(":", "_");
             saveName = saveName + "." + fileExtension;
