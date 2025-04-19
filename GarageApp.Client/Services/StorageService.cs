@@ -33,7 +33,7 @@ namespace GarageApp.Client.Services
 
             var fileExtension = fileName.Split(".").Last();
 
-            var saveName = "registrationNomber";
+            var saveName = registrationNomber;
 
             saveName = saveName.Replace("/", "_").Replace(" ", "_").Replace(":", "_");
             saveName = saveName + "." + fileExtension;
