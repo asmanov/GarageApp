@@ -74,10 +74,10 @@
             filters.Add(x => x.Year >= YearProdact);
         }
 
-        if (Milage is not null && Milage > 0)
-        {
-            filters.Add(x => x.Mileage <= Milage);
-        }
+        // if (Milage is not null && Milage > 0)
+        // {
+        //     filters.Add(x => x.Mileage <= Milage);
+        // }
 
         if (filters.Any())
         {
