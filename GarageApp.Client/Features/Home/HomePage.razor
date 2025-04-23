@@ -60,24 +60,28 @@
 
 
 @code{
-    private IEnumerable<Equipment>? _equips = Enumerable.Empty<Equipment>();
+    private IEnumerable<Equipment>? _equips;
     private Equipment? _selectedEquip;
 
     protected override async Task OnInitializedAsync(){
         try
         {
-            // _equips = await Http.GetFromJsonAsync<IEnumerable<Equipment>>("Equipment/equip-data.json");
             var response = await DatabaseService.FromS<Equipment>();
+
+            _equips = Enumerable.Empty<Equipment>();
+
             foreach(Equipment item in response)
             {
-                Equipment equip = new();
-                equip.RegistrationNumber = item.RegistrationNumber;
-                equip.Year = item.Year;
-                equip.Euro = item.Euro;
-                equip.BrandName = item.BrandName;
-                equip.ModelName = item.ModelName;
-                equip.Image = await StorageService.GetImageUrl("GarageImage", item.Image);
-                _equips.Append<Equipment>(equip);
+                Equipment equip = new()
+                    {
+                        RegistrationNumber = item.RegistrationNumber,
+                        Year = item.Year,
+                        Euro = item.Euro,
+                        BrandName = item.BrandName,
+                        ModelName = item.ModelName,
+                        Image = await StorageService.GetImageUrl("GarageImage", item.Image)
+                    };
+                _equips = _equips.Append<Equipment>(equip);
             }
         }
         catch (HttpRequestException ex)
