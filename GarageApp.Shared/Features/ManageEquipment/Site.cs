@@ -11,7 +11,5 @@ namespace GarageApp.Shared.Features.ManageEquipment
         [Column("fuel_tank")]
         public int FuelTank { get; set; }
 
-        //[Reference(typeof(ModelTrack))]
-        //public List<ModelTrack> ModelTracks { get; set; } = default!;
     }
 }

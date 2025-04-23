@@ -62,5 +62,11 @@ namespace GarageApp.Client.Services
             var bucket = _storage.From(bucketName);
             return bucket.Download(fileName, (_, f) => Debug.WriteLine($"Download Progress: {f}%"));
         }
+
+        public Task<string> GetImageUrl(string bucketName, string fileName)
+        {
+            var bucket = _storage.From(bucketName);
+            return bucket.CreateSignedUrl(fileName, 60);
+        }
     }
 }

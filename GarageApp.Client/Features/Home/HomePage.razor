@@ -1,55 +1,62 @@
 ﻿@page "/"
 @inject HttpClient Http
+@inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
+@inject StorageService StorageService
 
 <PageTitle>Home</PageTitle>
 <EquipDetails Equipment="_selectedEquip" />
 
-    <MudItem>
-        <EquipSearch/>
-    </MudItem>
-    <MudFlexBreak />
-    
-        
-        <MudGrid Justify="Justify.SpaceEvenly">
-            
-            @if (_equips == null)
-            {
-                <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
-            }
-            else
-            {
-                <ViewSwitcher>
-                    <GridTemplate>
-                        @foreach (var equip in _equips)
-                        {
-                            <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
-                        }
-                    </GridTemplate>
-                    <TableTemplete>
-                        <MudSimpleTable Hover="true" Dense="true" FixedHeader="true" Style="margin-top: 15px">
+<MudItem>
+    <EquipSearch/>
+</MudItem>
+<MudFlexBreak />
+
+
+<MudGrid Justify="Justify.SpaceEvenly">
+
+    @if (_equips == null)
+    {
+        <MudProgressCircular Color="Color.Primary" Style="height:70px;width:70px;" Indeterminate="true" />
+    }
+    else
+    {
+        <ViewSwitcher>
+            <GridTemplate>
+                @foreach (var equip in _equips)
+                {
+                    <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
+                }
+            </GridTemplate>
+            <TableTemplete>
+                <MudSimpleTable Hover="true" Dense="true" FixedHeader="true" Style="margin-top: 15px">
                     <thead>
                         <tr>
                             <th>Держ. номер</th>
                             <th>Марка</th>
                             <th>Модель</th>
+                            <th>Год выпуска</th>
+                            <th>Класс выбросов</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var equip in _equips)
                         {
                             <tr>
-                                <td>@equip.Id</td>
+                                <td>@equip.RegistrationNumber</td>
                                 <td>@equip.BrandName</td>
                                 <td>@equip.ModelName</td>
+                                <td>@equip.Year</td>
+                                <td>@equip.Euro</td>
                             </tr>
                         }
                     </tbody>
-                        </MudSimpleTable>
-                    </TableTemplete>
-                </ViewSwitcher>   
-            }
-        </MudGrid>
-    
+                </MudSimpleTable>
+            </TableTemplete>
+        </ViewSwitcher>   
+    }
+</MudGrid>
+
 
 
 @code{
@@ -59,7 +66,18 @@
     protected override async Task OnInitializedAsync(){
         try
         {
-            _equips = await Http.GetFromJsonAsync<IEnumerable<Equipment>>("Equipment/equip-data.json");
+            // _equips = await Http.GetFromJsonAsync<IEnumerable<Equipment>>("Equipment/equip-data.json");
+            var response = await DatabaseService.FromS<Equipment>();
+            foreach(Equipment item in response)
+            {
+                Equipment equip = new();
+                equip.RegistrationNumber = item.RegistrationNumber;
+                equip.Year = item.Year;
+                equip.Euro = item.Euro;
+                equip.BrandName = item.BrandName;
+                equip.ModelName = item.ModelName;
+                equip.Image = await StorageService.GetImageUrl("GarageImage", item.Image);
+            }
         }
         catch (HttpRequestException ex)
         {
@@ -68,4 +86,6 @@
     }
 
     private void HandleEquipSelected(Equipment equipment) => _selectedEquip = equipment;
+
+
 }

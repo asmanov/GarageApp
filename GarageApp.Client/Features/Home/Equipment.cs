@@ -1,13 +1,28 @@
-﻿namespace GarageApp.Client.Features.Home
+﻿using GarageApp.Shared.Features.ManageEquipment;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+
+namespace GarageApp.Client.Features.Home
 {
-    public class Equipment
+    [Table("equipmens_view")]
+    public class Equipment : BaseModelApp
     {
-        public required string Id { get; set; }
-        public required string ModelName { get; set; }
-        public required string BrandName { get; set; }
-        public required string Image { get; set; }
-        public required string Description { get; set; }
+        [Column("registration_number")]
+        public string RegistrationNumber { get; set; } = default!;
+
+        [Column("name")]
+        public string ModelName { get; set; } = default!;
+
+        [Column("brand_name")]
+        public string BrandName { get; set; } = default!;
+
+        [Column("image")]
+        public string Image { get; set; } = default!;
+
+        [Column("year")]
         public int Year { get; set; }
-        public int Mileage { get; set; }
+
+        [Column("euro")]
+        public int Euro { get; set; }
     }
 }
