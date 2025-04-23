@@ -60,7 +60,7 @@
 
 
 @code{
-    private IEnumerable<Equipment>? _equips;
+    private IEnumerable<Equipment>? _equips = Enumerable.Empty<Equipment>();
     private Equipment? _selectedEquip;
 
     protected override async Task OnInitializedAsync(){
