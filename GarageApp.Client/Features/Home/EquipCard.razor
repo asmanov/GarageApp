@@ -7,11 +7,11 @@
 
         </MudCardMedia>
         <MudCardContent>
-            <MudText Typo="Typo.h5">@Equipment.RegistrationNumber</MudText>
-            <MudText Typo="Typo.body2">@Equipment.BrandName</MudText>
-            <MudText Typo="Typo.body2">@Equipment.ModelName</MudText>
-            <MudText Typo="Typo.body2">@Equipment.Year</MudText>
-            <MudText Typo="Typo.body2">@Equipment.Euro</MudText>
+            <MudText Typo="Typo.h4"><b/>@Equipment.RegistrationNumber</MudText>
+            <MudText Typo="Typo.body2"><b />Марка: @Equipment.BrandName</MudText>
+            <MudText Typo="Typo.body2"><b />Модель: @Equipment.ModelName</MudText>
+            <MudText Typo="Typo.body2"><b />Рік випуску: @Equipment.Year</MudText>
+            <MudText Typo="Typo.body2"><b />Рівень екологічних норм: @Equipment.Euro</MudText>
         </MudCardContent>
         <MudCardActions>
             <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="@(async () => await OnSelected.InvokeAsync(Equipment))">Learn More</MudButton >
