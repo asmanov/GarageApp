@@ -1,5 +1,6 @@
 ﻿@page "/add-inshurance"
 @inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
 
 <PageTitle>Add inshurance</PageTitle>
 
@@ -21,13 +22,20 @@ else if (_errorMessage is not null)
         new("Add inshurance", href: null, disabled: true, icon: Icons.Material.Filled.Create)
     ];
 
-    private bool _submitSuccessful;
-    private string? _errorMessage;
     private InshuranceForm _inshuranceItem = default!;
 
     private async Task SubmitNewInspection(Inshurance item)
     {
-        await DatabaseService.Insert<Inshurance>(item);
+        var response = await DatabaseService.Insert<Inshurance>(item);
+
+        if (response == null)
+        {
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
+        }
+
+        Snackbar.Add("Запись успешно добавлена");
         _inshuranceItem.ResetForm();
         StateHasChanged();
     }

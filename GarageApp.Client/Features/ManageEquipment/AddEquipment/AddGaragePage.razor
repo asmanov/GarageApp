@@ -21,6 +21,7 @@
     private async Task SubmitNewItem(Garage item, IBrowserFile? image)
     {
         var response = await DatabaseService.Insert<Garage>(item);
+
         if(response == null)
         {
             Snackbar.Add("Ошибка при добавлении записи");
