@@ -6,7 +6,7 @@
 
 <MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
 
-<InshuranceForm @ref="_inshuranceItem" OnSubmit="SubmitNewInspection" />
+<InshuranceForm @ref="_inshuranceItem" OnSubmit="SubmitNewInshurance" />
 
 @code {
     private List<BreadcrumbItem> _items =
@@ -17,7 +17,7 @@
 
     private InshuranceForm _inshuranceItem = default!;
 
-    private async Task SubmitNewInspection(Inshurance item)
+    private async Task SubmitNewInshurance(Inshurance item)
     {
         var response = await DatabaseService.Insert<Inshurance>(item);
 
