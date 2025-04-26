@@ -5,14 +5,7 @@
 <PageTitle>Add inshurance</PageTitle>
 
 <MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
-@if (_submitSuccessful)
-{
-    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
-}
-else if (_errorMessage is not null)
-{
-    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
-}
+
 <InshuranceForm @ref="_inshuranceItem" OnSubmit="SubmitNewInspection" />
 
 @code {
