@@ -1,33 +1,33 @@
 ﻿@page "/add-model"
 @inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
 
 <PageTitle>Add model</PageTitle>
 
 <MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
-@if (_submitSuccessful)
-{
-    <MudAlert Severity="Severity.Success">Обладнання додане</MudAlert>
-}
-else if (_errorMessage is not null)
-{
-    <MudAlert Severity="Severity.Error">@_errorMessage</MudAlert>
-}
+
 <ModelTrackForm @ref="_modelTrackForm" OnSubmit="SubmitNewModel" />
 
 @code{
-    private List<BreadcrumbItem> _items =
+    private readonly List<BreadcrumbItem> _items =
     [
         new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
         new("Add model", href: null, disabled: true, icon: Icons.Material.Filled.Create)
     ];
 
-    private bool _submitSuccessful;
-    private string? _errorMessage;
     private ModelTrackForm _modelTrackForm = default!;
 
     private async Task SubmitNewModel(ModelTrack modelTrack)
     {
-        await DatabaseService.Insert<ModelTrack>(modelTrack);
+        var response = await DatabaseService.Insert<ModelTrack>(modelTrack);
+
+        if (response == null)
+        {
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
+        }
+
         _modelTrackForm.ResetForm();
         StateHasChanged();
     }

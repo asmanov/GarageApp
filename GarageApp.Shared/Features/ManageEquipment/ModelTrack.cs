@@ -24,7 +24,5 @@ namespace GarageApp.Shared.Features.ManageEquipment
         [Column("brand")]
         public int BrandId { get; set; }
 
-        //[Reference(typeof(BrandTrack), true, true, "brand_tracks", "id")]
-        //public BrandTrack BrandTrack { get; set; } = default!;
     }
 }

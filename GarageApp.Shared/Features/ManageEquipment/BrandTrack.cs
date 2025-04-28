@@ -8,9 +8,6 @@ namespace GarageApp.Shared.Features.ManageEquipment
     {
         [Column("name")]
         public string Name { get; set; } = string.Empty;
-
-        //[Reference(typeof(ModelTrack))]
-        //public List<ModelTrack> ModelTracks { get; set; } = default!;
     }
 
     public class BrandTrackValidator : AbstractValidator<BrandTrack> 

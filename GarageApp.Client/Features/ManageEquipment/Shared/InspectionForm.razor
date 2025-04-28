@@ -7,8 +7,12 @@
         <MudCardHeader Typo="Typo.h1"><b>Add inspection info</b></MudCardHeader>
         <MudCardContent>
             <FormSection Title="Техничний огляд" HelpText="Вкажить дату проведення техничного огляда">
-                <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" Variant="Variant.Outlined" />
-                <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateEnd" Variant="Variant.Outlined" />
+                <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" 
+                Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateStart" 
+                Variant="Variant.Outlined" />
+                <MudDatePicker Style="margin-bottom: 20px;" PickerVariant="PickerVariant.Dialog" 
+                Rounded="true" Elevation="12" Label="Start date" @bind-Date="DateEnd" 
+                Variant="Variant.Outlined" />
                 <MudSelect T="int" @bind-Value="_inspection.Track" Variant="Variant.Outlined">
                     @if (GarageList?.Any() == true)
                     {

@@ -31,7 +31,6 @@
     public void ResetForm()
     {
         _brandTrack = new BrandTrack();
-        StateHasChanged();
     }
 
     private async Task SubmitForm() => await OnSubmit(_brandTrack);

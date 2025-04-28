@@ -64,7 +64,6 @@
     public void ResetForm()
     {
         _modelTrack = new ModelTrack();
-        StateHasChanged();
     }
 
     private async Task SubmitForm() => await OnSubmit(_modelTrack);
