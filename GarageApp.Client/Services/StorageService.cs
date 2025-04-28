@@ -65,12 +65,9 @@ namespace GarageApp.Client.Services
 
         public Task<string> GetImageUrl(string bucketName, string fileName)
         {
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                var bucket = _storage.From(bucketName);
-                return bucket.CreateSignedUrl(fileName, 900);
-            }
-            return null;
+            var bucket = _storage.From(bucketName);
+            return bucket.CreateSignedUrl(fileName, 900);
+            
         }
     }
-}
+} 

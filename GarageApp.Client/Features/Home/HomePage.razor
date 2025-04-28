@@ -81,7 +81,7 @@
                         Euro = item.Euro,
                         BrandName = item.BrandName,
                         ModelName = item.ModelName,
-                        Image = await StorageService.GetImageUrl("GarageImage", item.Image)
+                        Image = (!string.IsNullOrEmpty(item.Image)) ? await StorageService.GetImageUrl("GarageImage", item.Image) : "https://via.placeholder.com/600x400?text=Placeholder"
                     };
                 _equips = _equips.Append<Equipment>(equip);
             }
