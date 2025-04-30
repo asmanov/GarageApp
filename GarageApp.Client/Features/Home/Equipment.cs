@@ -24,5 +24,14 @@ namespace GarageApp.Client.Features.Home
 
         [Column("euro")]
         public int Euro { get; set; }
+
+        [Column("description")]
+        public string? Description { get; set; }
+
+        [Column("volume_fuel_tank")]
+        public int VolumeFuelTank { get; set; }
+
+        [Column("vin")]
+        public string Vin { get; set; } = default!;
     }
 }

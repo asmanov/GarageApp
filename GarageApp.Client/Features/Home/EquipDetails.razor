@@ -37,10 +37,14 @@
 
             </MudDrawerContainer>
             <MudDrawerContainer Class="ma-10">
-                <MudText Typo="Typo.body1"><b>Марка: </b>@_activeEquip.BrandName</MudText>
-                <MudText Typo="Typo.body1"><b>Модель: </b>@_activeEquip.ModelName</MudText>
-                <MudText Typo="Typo.body1"><b>Рік: </b>@_activeEquip.Year</MudText>
-                <MudText Typo="Typo.body1"><b>Класс выбросов Евро: </b>@_activeEquip.Euro<b> км</b></MudText>
+                <MudText Typo="Typo.h5"><b />@_activeEquip.RegistrationNumber</MudText>
+                <MudText Typo="Typo.body2"><b />Марка: @_activeEquip.BrandName</MudText>
+                <MudText Typo="Typo.body2"><b />Модель: @_activeEquip.ModelName</MudText>
+                <MudText Typo="Typo.body2"><b />Ідентифікаційний номер <br> транспортного засобу: @_activeEquip.Vin</MudText>
+                <MudText Typo="Typo.body2"><b />Рік випуску: @_activeEquip.Year</MudText>
+                <MudText Typo="Typo.body2"><b />Рівень екологічних норм: @_activeEquip.Euro</MudText>
+                <MudText Typo="Typo.body2"><b />Опис: @_activeEquip.Description</MudText>
+                <MudText Typo="Typo.body2"><b />"Об\'єм <br> паливного бака": @_activeEquip.VolumeFuelTank</MudText>
             </MudDrawerContainer>
         }
         <MudFab StartIcon="@Icons.Material.Filled.Close"

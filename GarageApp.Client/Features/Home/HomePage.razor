@@ -81,7 +81,10 @@
                         Euro = item.Euro,
                         BrandName = item.BrandName,
                         ModelName = item.ModelName,
-                        Image = (!string.IsNullOrEmpty(item.Image)) ? await StorageService.GetImageUrl("GarageImage", item.Image) : "https://place-hold.it/300x200/666/fff?text=Track"
+                        Image = (!string.IsNullOrEmpty(item.Image)) ? await StorageService.GetImageUrl("GarageImage", item.Image) : "https://place-hold.it/300x200/666/fff?text=Track",
+                        Description = item.Description,
+                        Vin = item.Vin,
+                        VolumeFuelTank = item.VolumeFuelTank
                     };
                 _equips = _equips.Append<Equipment>(equip);
             }
