@@ -35,6 +35,7 @@
                     <thead>
                         <tr>
                             <th>Держ.<br />номер</th>
+                            <th>VIN</th>
                             <th>Марка</th>
                             <th>Модель</th>
                             <th>Год<br />выпуска</th>
@@ -45,7 +46,8 @@
                         @foreach (var equip in _equips)
                         {
                             <tr>
-                                <td>@equip.RegistrationNumber</td>
+                                <td>  @equip.RegistrationNumber</td>
+                                <td>@equip.Vin</td>
                                 <td>@equip.BrandName</td>
                                 <td>@equip.ModelName</td>
                                 <td>@equip.Year</td>
