@@ -53,7 +53,7 @@
     private IBrowserFile? _equipImage;
 
     [Parameter]
-    public Func<EquipmentDto, IBrowserFile?, Task> OnSubmit { get; set; }
+    public required Func<EquipmentDto, IBrowserFile?, Task> OnSubmit { get; set; }
 
     public void ResetForm(){
         _equipment = new EquipmentDto();

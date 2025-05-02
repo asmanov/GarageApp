@@ -1,7 +1,7 @@
 
 <MudHidden Breakpoint="Breakpoint.Xs">
     <MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" Anchor="Anchor.Right" 
-    ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" Width="30%" 
+    ClipMode="DrawerClipMode.Always" OverlayAutoClose="true" Width="30%" 
     Variant="DrawerVariant.Responsive">
         <MudFab StartIcon="@Icons.Material.Filled.Close"
                 Color="Color.Error"
@@ -34,7 +34,7 @@
 </MudHidden>
 <MudHidden Breakpoint="Breakpoint.SmAndUp">
     <MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" 
-    Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="false" 
+    Anchor="Anchor.Right" ClipMode="DrawerClipMode.Always" OverlayAutoClose="true" 
     Width="95%" Variant="DrawerVariant.Responsive">
         @if (_activeEquip is not null)
         {

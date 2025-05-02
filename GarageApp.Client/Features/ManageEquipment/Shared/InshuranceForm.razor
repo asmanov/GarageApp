@@ -60,7 +60,7 @@
     public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
 
     [Parameter, EditorRequired]
-    public Func<Inshurance, Task> OnSubmit { get; set; }
+    public required Func<Inshurance, Task> OnSubmit { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

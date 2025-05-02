@@ -38,7 +38,7 @@
     private IEnumerable<Equipment>? _searchResults;
     private IEnumerable<Equipment> _cachedSearchResults = Array.Empty<Equipment>();
     private Equipment? _selectedEquip;
-    private List<BreadcrumbItem> _items =
+    private readonly List<BreadcrumbItem> _items =
     [
         new("Home", href: "/GarageApp/", icon: Icons.Material.Filled.Home),
         new("Search", href: null, disabled: true, icon: Icons.Material.Filled.Search)
@@ -73,11 +73,6 @@
         {
             filters.Add(x => x.Year >= YearProdact);
         }
-
-        // if (Milage is not null && Milage > 0)
-        // {
-        //     filters.Add(x => x.Mileage <= Milage);
-        // }
 
         if (filters.Any())
         {

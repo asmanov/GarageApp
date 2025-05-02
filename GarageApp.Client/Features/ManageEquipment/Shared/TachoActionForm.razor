@@ -50,7 +50,7 @@
     public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
 
     [Parameter, EditorRequired]
-    public Func<TachoAction, Task> OnSubmit { get; set; }
+    public required Func<TachoAction, Task> OnSubmit { get; set; }
     [Parameter]
     public TachoAction? TachoAction { get; set; }
 
