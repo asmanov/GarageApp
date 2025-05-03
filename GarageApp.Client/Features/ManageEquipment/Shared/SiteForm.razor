@@ -32,7 +32,6 @@
     public void ResetForm()
     {
         _site = new Site();
-        StateHasChanged();
     }
 
     private async Task SubmitForm() => await OnSubmit(_site);

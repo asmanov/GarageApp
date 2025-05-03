@@ -1,5 +1,6 @@
 ﻿@page "/add-inspection"
 @inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
 
 <PageTitle>Add inspection</PageTitle>
 
@@ -18,7 +19,16 @@
 
     private async Task SubmitNewInspection(Inspection item)
     {
-        await DatabaseService.Insert<Inspection>(item);
+        var response = await DatabaseService.Insert<Inspection>(item);
+
+        if (response == null)
+        {
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
+        }
+
+        Snackbar.Add("Запись успешно добавлена");
         _inspectionItem.ResetForm();
         StateHasChanged();
     }

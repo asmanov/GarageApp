@@ -60,7 +60,6 @@
     public void ResetForm()
     {
         _inspection = new Inspection();
-        StateHasChanged();
     }
 
     private async Task SubmitForm() => await OnSubmit(_inspection);

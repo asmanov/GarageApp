@@ -1,5 +1,6 @@
 ﻿@page "/add-tacho"
 @inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
 
 <PageTitle>Add tacho action</PageTitle>
 
@@ -18,7 +19,16 @@
 
     private async Task SubmitNewTacho(TachoAction item)
     {
-        await DatabaseService.Insert<TachoAction>(item);
+        var response = await DatabaseService.Insert<TachoAction>(item);
+
+        if (response == null)
+        {
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
+        }
+
+        Snackbar.Add("Запись успешно добавлена");
         _tachoItem.ResetForm();
         StateHasChanged();
     }

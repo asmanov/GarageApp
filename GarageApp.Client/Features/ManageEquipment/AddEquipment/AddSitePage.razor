@@ -1,5 +1,6 @@
 ﻿@page "/add-site"
 @inject DatabaseService DatabaseService
+@inject ISnackbar Snackbar
 
 <PageTitle>Add site</PageTitle>
 
@@ -18,7 +19,16 @@
 
     private async Task SubmitNewSite(Site site)
     {
-        await DatabaseService.Insert<Site>(site);
+        var response = await DatabaseService.Insert<Site>(site);
+
+        if (response == null)
+        {
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
+        }
+
+        Snackbar.Add("Запись успешно добавлена");
         _siteForm.ResetForm();
         StateHasChanged();
     }
