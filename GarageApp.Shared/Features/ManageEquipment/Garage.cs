@@ -27,7 +27,7 @@ namespace GarageApp.Shared.Features.ManageEquipment
         public int Year { get; set; }
 
         [Column("volume_fuel_tank")]
-        public int VolumeFuelTank { get; set; }
+        public int? VolumeFuelTank { get; set; }
 
         [Column("vin")]
         public string Vin { get; set; } = default!;
@@ -67,14 +67,11 @@ namespace GarageApp.Shared.Features.ManageEquipment
                 .WithMessage("Значення повино бути між 2000 та 2025")
                 .NotEmpty()
                 .WithMessage("Ведіть рік виробництва");
-            RuleFor(x => x.Vin)
+             RuleFor(x => x.Vin)
                 .NotEmpty()
                 .WithMessage("Ведіть VIN номер")
                 .Length(17)
                 .WithMessage("VIN номер повинен мати 17 символів");
-            RuleFor(x => x.VolumeFuelTank)
-                .NotEmpty()
-                .WithMessage("Ведіть загальний об'єм паливного бака");
         }
     }
 }

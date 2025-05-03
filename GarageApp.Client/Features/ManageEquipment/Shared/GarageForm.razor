@@ -13,7 +13,8 @@
                 <MudTextField Label="Ідентифікаційний номер транспортного засобу" HelperText=""
                 Variant="Variant.Outlined" @bind-Value="_garageItem.Vin"
                 For="@(() => _garageItem.Vin)" />
-                <MudSelect T="int" @bind-Value="_garageItem.ModelId" Variant="Variant.Outlined">
+                <MudSelect T="int" @bind-Value="_garageItem.ModelId" 
+                Variant="Variant.Outlined" Placeholder="Модель">
                     @if (ModelTracks?.Any() == true)
                     {
                         @foreach (var model in ModelTracks)
