@@ -20,6 +20,11 @@
 
     private async Task SubmitNewItem(Garage item, IBrowserFile? image)
     {
+        if(image is null)
+        {
+            item.Image = null;
+        }
+
         var response = await DatabaseService.Insert<Garage>(item);
 
         if(response == null)

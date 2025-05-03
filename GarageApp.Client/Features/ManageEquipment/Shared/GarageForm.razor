@@ -32,7 +32,8 @@
                 @bind-Value="_garageItem.Year" 
                 For="@(() => _garageItem.Year)" Clearable Min="2000" Max="2030"/>
                 <MudNumericField Label="Об'єм паливного бака" HelperText="" Variant="Variant.Outlined"
-                @bind-Value="_garageItem.VolumeFuelTank" For="@(() => _garageItem.VolumeFuelTank)" />
+                                 @bind-Value="_garageItem.VolumeFuelTank" Clearable 
+                                 For="@(() => _garageItem.VolumeFuelTank)" />
                 <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Accept=".png, .jpg">
                     <ActivatorContent>
                         <MudFab Color="Color.Secondary"
@@ -42,7 +43,8 @@
                 </MudFileUpload>
             </FormSection>
             <FormSection Title="Місце розташування" HelpText="">
-                <MudSelect T="int?" @bind-Value="_garageItem.SiteId" Variant="Variant.Outlined" Clearable>
+                <MudSelect T="int?" @bind-Value="_garageItem.SiteId" Variant="Variant.Outlined" 
+                Clearable>
                     @if (Sites?.Any() == true)
                     {
                         @foreach (var site in Sites)
