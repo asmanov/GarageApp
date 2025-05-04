@@ -3,7 +3,7 @@
 <MudItem xs="12" sm="6" md="4" lg="3" style="margin: 3px; border-radius: 10px">
     <MudCard>
         <MudCardMedia ObjectFit="ObjectFit.ScaleDown" Height="400" Elevation="100"
-                      Class="rounded-lg ma-2" Image=@Equipment.Image>
+        Class="rounded-lg ma-2" Image=@Equipment.Image>
 
         </MudCardMedia>
         <MudCardContent>
@@ -11,7 +11,10 @@
             <MudText Typo="Typo.body2"><b />Марка: @Equipment.BrandName</MudText>
             <MudText Typo="Typo.body2"><b />Модель: @Equipment.ModelName</MudText>
             <MudText Typo="Typo.body2"><b />Рік випуску: @Equipment.Year</MudText>
-            <MudText Typo="Typo.body2"><b />Рівень екологічних норм: @Equipment.Euro</MudText>
+            @if (Equipment.Euro != 0)
+            {
+                <MudText Typo="Typo.body2"><b />Рівень екологічних норм: @Equipment.Euro</MudText>
+            }
         </MudCardContent>
         <MudCardActions>
             <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="@(async () => await OnSelected.InvokeAsync(Equipment))">Learn More</MudButton >

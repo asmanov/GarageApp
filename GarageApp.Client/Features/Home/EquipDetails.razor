@@ -4,11 +4,11 @@
     ClipMode="DrawerClipMode.Always" OverlayAutoClose="true" Width="30%" 
     Variant="DrawerVariant.Responsive">
         <MudFab StartIcon="@Icons.Material.Filled.Close"
-                Color="Color.Error"
-                Size="Size.Small"
-                OnClick="Close"
-                ToolTip="Close"
-                ToolTipPosition="Bottom" />
+        Color="Color.Error"
+        Size="Size.Small"
+        OnClick="Close"
+        ToolTip="Close"
+        ToolTipPosition="Bottom" />
         @if (_activeEquip is not null)
         {
             <MudDrawerHeader>
@@ -25,9 +25,15 @@
                 <MudText Typo="Typo.body2">Модель: <b>@_activeEquip.ModelName</b></MudText>
                 <MudText Typo="Typo.body2">Ідентифікаційний номер <br> транспортного засобу: <b>@_activeEquip.Vin</b></MudText>
                 <MudText Typo="Typo.body2">Рік випуску: <b>@_activeEquip.Year</b></MudText>
-                <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>
+                @if (_activeEquip.Euro != 0)
+                {
+                    <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>  
+                }
                 <MudText Typo="Typo.body2">Опис: <b>@_activeEquip.Description</b></MudText>
-                <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
+                @if (_activeEquip.VolumeFuelTank != 0)
+                {
+                    <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>  
+                }
             </MudDrawerContainer>
         }
     </MudDrawer>
@@ -51,9 +57,15 @@
                 <MudText Typo="Typo.body2">Модель: <b>@_activeEquip.ModelName</b></MudText>
                 <MudText Typo="Typo.body2">Ідентифікаційний номер <br> транспортного засобу: <b>@_activeEquip.Vin</b></MudText>
                 <MudText Typo="Typo.body2">Рік випуску: <b>@_activeEquip.Year</b></MudText>
-                <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>
+                @if (_activeEquip.Euro != 0)
+                {
+                    <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>
+                }
                 <MudText Typo="Typo.body2">Опис: <b>@_activeEquip.Description</b></MudText>
-                <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
+                @if (_activeEquip.VolumeFuelTank != 0)
+                {
+                    <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
+                }
             </MudDrawerContainer>
         }
         <MudFab StartIcon="@Icons.Material.Filled.Close"
