@@ -8,6 +8,7 @@ using Supabase;
 using Supabase.Gotrue;
 using Supabase.Postgrest.Exceptions;
 using Microsoft.Extensions.Logging;
+using static Supabase.Postgrest.Constants;
 
 
 namespace GarageApp.Client.Services
@@ -74,6 +75,28 @@ namespace GarageApp.Client.Services
             }
         }
 
+        public async Task<IReadOnlyList<TModel>> FromWithParametr<TModel>(int id, string inshuranceType) where TModel : BaseModelApp, new()
+        {
+            try
+            {
+                Console.WriteLine($"Запрос данных: {typeof(TModel).Name}");
+                var modeledResponse = await _client.From<TModel>()
+                    .Select("*")
+                    .Filter("id", Operator.Equals, id)
+                    .Filter("type", Operator.Equals,  inshuranceType)
+                    .Order("id", Ordering.Descending)
+                    .Limit(1)
+                    .Get();
+                Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
+                _logger.LogDebug("???????");
+                return modeledResponse.Models;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка запроса: {ex.Message}");
+                throw;
+            }
+        }
         public async Task<List<TModel>> Delete<TModel>(TModel item) where TModel : BaseModelApp, new()
         {
             var modeledResponse = await _client

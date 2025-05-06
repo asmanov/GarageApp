@@ -1,3 +1,5 @@
+@using GarageApp.Shared.Features.ManageEquipment
+@inject DatabaseService DatabaseService
 
 <MudHidden Breakpoint="Breakpoint.Xs">
     <MudDrawer @bind-Open="@_isopen" Elevation="1" Fixed="true" Anchor="Anchor.Right" 
@@ -34,6 +36,7 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>  
                 }
+                <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText>
             </MudDrawerContainer>
         }
     </MudDrawer>
@@ -57,6 +60,7 @@
                 <MudText Typo="Typo.body2">Модель: <b>@_activeEquip.ModelName</b></MudText>
                 <MudText Typo="Typo.body2">Ідентифікаційний номер транспортного <br> засобу: <b>@_activeEquip.Vin</b></MudText>
                 <MudText Typo="Typo.body2">Рік випуску: <b>@_activeEquip.Year</b></MudText>
+                
                 @if (_activeEquip.Euro != 0)
                 {
                     <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>
@@ -66,29 +70,33 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
                 }
+                <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText>
             </MudDrawerContainer>
         }
         <MudFab StartIcon="@Icons.Material.Filled.Close"
-                Color="Color.Error"
-                Size="Size.Small"
-                OnClick="Close"
-                ToolTip="Close"
-                ToolTipPosition="Bottom" />
+        Color="Color.Error"
+        Size="Size.Small"
+        OnClick="Close"
+        ToolTip="Close"
+        ToolTipPosition="Bottom" />
     </MudDrawer>
 </MudHidden>
 
 @code {
     private bool _isopen = false;
     private Equipment? _activeEquip;
+    private Inshurance item = default!;
+    public IEnumerable<Inshurance> Inshurances { get; set; } = new List<Inshurance>();
 
     [Parameter, EditorRequired]
     public Equipment? Equipment { get; set; }
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
         if (Equipment != null)
         {
             _activeEquip = Equipment;
+            Inshurances = await DatabaseService.FromWithParametr<Inshurance>(_activeEquip.Id, "Зелена карта");
             _isopen = true;
         }
     }
