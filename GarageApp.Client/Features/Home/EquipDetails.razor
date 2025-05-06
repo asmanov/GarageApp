@@ -36,7 +36,7 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>  
                 }
-                <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText>
+                @* <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText> *@
             </MudDrawerContainer>
         }
     </MudDrawer>
@@ -70,7 +70,7 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
                 }
-                <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText>
+                @* <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText> *@
             </MudDrawerContainer>
         }
         <MudFab StartIcon="@Icons.Material.Filled.Close"
@@ -96,8 +96,8 @@
         if (Equipment != null)
         {
             _activeEquip = Equipment;
-            Inshurances = await DatabaseService.FromWithParametr<Inshurance>(5, "Зелена карта");
-            Console.WriteLine(Inshurances.First());
+            // Inshurances = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "Зелена карта");
+            // Console.WriteLine(Inshurances.First());
             _isopen = true;
         }
     }
