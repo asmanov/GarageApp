@@ -96,7 +96,7 @@
         if (Equipment != null)
         {
             _activeEquip = Equipment;
-            Inshurances = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "Зелена карта");
+            Inshurances = await DatabaseService.FromWithParametr<Inshurance>(5, "Зелена карта");
             Console.WriteLine(Inshurances.First());
             _isopen = true;
         }
