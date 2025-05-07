@@ -83,6 +83,7 @@ namespace GarageApp.Client.Services
                 var modeledResponse = await _client.From<TModel>()
                     .Select("*")
                     .Filter("track", Operator.Equals, id)
+                    .Filter("type", Operator.Equals, inshuranceType)
                     .Get();
                 Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
                 _logger.LogDebug("???????");
