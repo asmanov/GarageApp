@@ -80,8 +80,7 @@ namespace GarageApp.Client.Services
             try
             {
                 Console.WriteLine($"Запрос данных: {typeof(TModel).Name}");
-                var modeledResponse = await _client.Postgrest
-                    .Table<TModel>()
+                var modeledResponse = await _client.From<TModel>()
                     .Select("*")
                     .Get();
                 Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
