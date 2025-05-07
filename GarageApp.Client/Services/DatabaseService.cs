@@ -84,8 +84,6 @@ namespace GarageApp.Client.Services
                     .Table<TModel>()
                     .Select("*")
                     .Where(x => x.Id == id)
-                    .Order("end", Ordering.Descending)
-                    .Limit(1)
                     .Get();
                 Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
                 _logger.LogDebug("???????");
