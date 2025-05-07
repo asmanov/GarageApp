@@ -83,7 +83,6 @@ namespace GarageApp.Client.Services
                 var modeledResponse = await _client.Postgrest
                     .Table<TModel>()
                     .Select("*")
-                    .Where(x => x.Id == id)
                     .Get();
                 Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
                 _logger.LogDebug("???????");
