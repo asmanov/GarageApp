@@ -83,8 +83,7 @@ namespace GarageApp.Client.Services
                 var modeledResponse = await _client.Postgrest
                     .Table<TModel>()
                     .Select("*")
-                    .Filter("id", Operator.Equals, id)
-                    .Filter("type", Operator.Equals,  inshuranceType)
+                    .Where(x => x.Id == id)
                     .Order("end", Ordering.Descending)
                     .Limit(1)
                     .Get();
