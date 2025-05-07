@@ -82,6 +82,7 @@ namespace GarageApp.Client.Services
                 Console.WriteLine($"Запрос данных: {typeof(TModel).Name}");
                 var modeledResponse = await _client.From<TModel>()
                     .Select("*")
+                    .Filter("track", Operator.Equals, id)
                     .Get();
                 Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
                 _logger.LogDebug("???????");
