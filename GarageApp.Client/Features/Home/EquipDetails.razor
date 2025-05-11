@@ -36,9 +36,17 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>  
                 }
-                @if (Inshurances.FirstOrDefault() is not null)
+                @if (СompulsoryInsurance.FirstOrDefault() is not null)
                 {
-                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(СompulsoryInsurance.First().Start) по @(СompulsoryInsurance.First().End)</b></MudText>
+                }
+                @if (GreenCard.FirstOrDefault() is not null)
+                {
+                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(GreenCard.First().Start) по @(GreenCard.First().End)</b></MudText>
+                }
+                @if (Kasko.FirstOrDefault() is not null)
+                {
+                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(Kasko.First().Start) по @(Kasko.First().End)</b></MudText>
                 }
             </MudDrawerContainer>
         }
@@ -73,11 +81,18 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
                 }
-                @if (Inshurances.FirstOrDefault() is not null)
+                @if (СompulsoryInsurance.FirstOrDefault() is not null)
                 {
-                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(Inshurances.First().Start) по @(Inshurances.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(СompulsoryInsurance.First().Start) по @(СompulsoryInsurance.First().End)</b></MudText>
                 }
-                
+                @if (GreenCard.FirstOrDefault() is not null)
+                {
+                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(GreenCard.First().Start) по @(GreenCard.First().End)</b></MudText>
+                }
+                @if (Kasko.FirstOrDefault() is not null)
+                {
+                    <MudText Typo="Typo.body2">Зелена карта: <b>с @(Kasko.First().Start) по @(Kasko.First().End)</b></MudText>
+                }
             </MudDrawerContainer>
         }
         <MudFab StartIcon="@Icons.Material.Filled.Close"
@@ -92,8 +107,10 @@
 @code {
     private bool _isopen = false;
     private Equipment? _activeEquip;
-    private Inshurance item = default!;
-    public IEnumerable<Inshurance> Inshurances { get; set; } = new List<Inshurance>();
+    //private Inshurance item = default!;
+    public IEnumerable<Inshurance> GreenCard { get; set; } = new List<Inshurance>();
+    public IEnumerable<Inshurance> СompulsoryInsurance { get; set; } = new List<Inshurance>();
+    public IEnumerable<Inshurance> Kasko { get; set; } = new List<Inshurance>();
 
     [Parameter, EditorRequired]
     public Equipment? Equipment { get; set; }
@@ -103,8 +120,9 @@
         if (Equipment != null)
         {
             _activeEquip = Equipment;
-            Inshurances = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "Зелена карта");
-            
+            GreenCard = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "Зелена карта");
+            СompulsoryInsurance = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "ОСЦПВ");
+            Kasko = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "КАСКО");
             _isopen = true;
         }
     }

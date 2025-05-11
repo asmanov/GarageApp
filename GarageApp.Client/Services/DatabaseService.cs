@@ -84,6 +84,8 @@ namespace GarageApp.Client.Services
                     .Select("*")
                     .Filter("track", Operator.Equals, id)
                     .Filter("type", Operator.Equals, inshuranceType)
+                    .Order("end", Ordering.Descending)
+                    .Limit(1)
                     .Get();
                 Console.WriteLine($"Получено записей: {modeledResponse.Models.Count}");
                 _logger.LogDebug("???????");
