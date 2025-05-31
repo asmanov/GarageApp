@@ -1,4 +1,3 @@
-@using GarageApp.Shared.Features.ManageEquipment
 @inject DatabaseService DatabaseService
 
 <MudHidden Breakpoint="Breakpoint.Xs">
@@ -35,17 +34,25 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>  
                 }
-                @if (СompulsoryInsurance.FirstOrDefault() is not null)
+                @if (_activeEquip.OsagoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">ОСЦПВ: <b>с @(СompulsoryInsurance.First().Start) по @(СompulsoryInsurance.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">ОСЦПВ: <b>с @_activeEquip.OsagoStart по @_activeEquip.OsagoEnd</b></MudText>
                 }
-                @if (GreenCard.FirstOrDefault() is not null)
+                @if (_activeEquip.GreenStart is not null)
                 {
-                    <MudText Typo="Typo.body2">Зелена <br> карта: <b>с @(GreenCard.First().Start) по @(GreenCard.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">Зелена <br> карта: <b>с @_activeEquip.GreenStart по @_activeEquip.GreenEnd</b></MudText>
                 }
-                @if (Kasko.FirstOrDefault() is not null)
+                @if (_activeEquip.KaskoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">КАСКО: <b>с @(Kasko.First().Start) по @(Kasko.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">КАСКО: <b>с @_activeEquip.KaskoStart по @_activeEquip.KaskoEnd</b></MudText>
+                }
+                @if (_activeEquip.TachoStart is not null)
+                {
+                    <MudText Typo="Typo.body2">Адаптація<br>тахографа: <b>с @_activeEquip.TachoStart по @_activeEquip.TachoEnd</b></MudText>
+                }
+                @if (_activeEquip.InspectionStart is not null)
+                {
+                    <MudText Typo="Typo.body2">Проведення ТО <b>с @_activeEquip.InspectionStart по @_activeEquip.InspectionEnd</b></MudText>
                 }
             </MudDrawerContainer>
         }
@@ -79,17 +86,25 @@
                 {
                     <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>
                 }
-                @if (СompulsoryInsurance.FirstOrDefault() is not null)
+                @if (_activeEquip.OsagoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">ОСЦПВ: <b>с @(СompulsoryInsurance.First().Start) по @(СompulsoryInsurance.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">ОСЦПВ: <b>с @_activeEquip.OsagoStart по @_activeEquip.OsagoEnd</b></MudText>
                 }
-                @if (GreenCard.FirstOrDefault() is not null)
+                @if (_activeEquip.GreenStart is not null)
                 {
-                    <MudText Typo="Typo.body2">Зелена <br> карта: <b>с @(GreenCard.First().Start) по @(GreenCard.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">Зелена <br> карта: <b>с @_activeEquip.GreenStart по @_activeEquip.GreenEnd</b></MudText>
                 }
-                @if (Kasko.FirstOrDefault() is not null)
+                @if (_activeEquip.KaskoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">КАСКО: <b>с @(Kasko.First().Start) по @(Kasko.First().End)</b></MudText>
+                    <MudText Typo="Typo.body2">КАСКО: <b>с @_activeEquip.KaskoStart по @_activeEquip.KaskoEnd</b></MudText>
+                }
+                @if (_activeEquip.TachoStart is not null)
+                {
+                    <MudText Typo="Typo.body2">Адаптація<br>тахографа: <b>с @_activeEquip.TachoStart по @_activeEquip.TachoEnd</b></MudText>
+                }
+                @if (_activeEquip.InspectionStart is not null)
+                {
+                    <MudText Typo="Typo.body2">Проведення ТО <b>с @_activeEquip.InspectionStart по @_activeEquip.InspectionEnd</b></MudText>
                 }
             </MudDrawerContainer>
         }
@@ -105,10 +120,11 @@
 @code {
     private bool _isopen = false;
     private Equipment? _activeEquip;
-    //private Inshurance item = default!;
-    public IEnumerable<Inshurance> GreenCard { get; set; } = new List<Inshurance>();
-    public IEnumerable<Inshurance> СompulsoryInsurance { get; set; } = new List<Inshurance>();
-    public IEnumerable<Inshurance> Kasko { get; set; } = new List<Inshurance>();
+    // public IEnumerable<Inshurance> GreenCard { get; set; } = new List<Inshurance>();
+    // public IEnumerable<Inshurance> СompulsoryInsurance { get; set; } = new List<Inshurance>();
+    // public IEnumerable<Inshurance> Kasko { get; set; } = new List<Inshurance>();
+    // public IEnumerable<Inspection> To { get; set; } = new List<Inspection>();
+    // public IEnumerable<TachoAction> Tacho { get; set; } = new List<TachoAction>();
 
     [Parameter, EditorRequired]
     public Equipment? Equipment { get; set; }
@@ -118,9 +134,9 @@
         if (Equipment != null)
         {
             _activeEquip = Equipment;
-            GreenCard = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "Зелена карта");
-            СompulsoryInsurance = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "ОСЦПВ");
-            Kasko = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "КАСКО");
+            // GreenCard = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "Зелена карта");
+            // СompulsoryInsurance = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "ОСЦПВ");
+            // Kasko = await DatabaseService.FromWithParametr<Inshurance>(Equipment.Id, "КАСКО");
             _isopen = true;
         }
     }

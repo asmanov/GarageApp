@@ -88,7 +88,16 @@
                         Image = (!string.IsNullOrEmpty(item.Image)) ? await StorageService.GetImageUrl("GarageImage", item.Image) : "https://place-hold.it/300x200/666/fff?text=Track",
                         Description = item.Description,
                         Vin = item.Vin,
-                        VolumeFuelTank = item.VolumeFuelTank
+                        VolumeFuelTank = item.VolumeFuelTank,
+                        OsagoStart = item.OsagoStart,
+                        OsagoEnd = item.OsagoEnd,
+                        KaskoStart = item.KaskoStart,
+                        GreenStart = item.GreenStart,
+                        GreenEnd = item.GreenEnd,
+                        TachoStart = item.TachoStart,
+                        TachoEnd = item.TachoEnd,
+                        InspectionStart = item.InspectionStart,
+                        InspectionEnd = item.InspectionEnd
                     };
                 _equips = _equips.Append<Equipment>(equip);
             }

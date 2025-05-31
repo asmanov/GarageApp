@@ -26,6 +26,7 @@
 @code {
     [Parameter, EditorRequired]
     public Equipment Equipment { get; set; } = default!;
+
     [Parameter]
     public EventCallback<Equipment> OnSelected { get; set; }
 }
