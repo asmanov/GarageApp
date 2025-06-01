@@ -19,38 +19,38 @@
                       Class="rounded-lg ma-5" />
             <MudDrawerContainer Class="ma-10">
                 <MudText Typo="Typo.h6"><b>@_activeEquip.RegistrationNumber</b></MudText>
-                <MudText Typo="Typo.body2">Марка: <b>@_activeEquip.BrandName</b></MudText>
-                <MudText Typo="Typo.body2">Модель: <b>@_activeEquip.ModelName</b></MudText>
-                <MudText Typo="Typo.body2">Ідентифікаційний номер транспортного <br> засобу: <b>@_activeEquip.Vin</b></MudText>
-                <MudText Typo="Typo.body2">Рік випуску: <b>@_activeEquip.Year</b></MudText>
+                <MudText Typo="Typo.body2">Марка:<br><b>@_activeEquip.BrandName</b></MudText>
+                <MudText Typo="Typo.body2">Модель:<br><b>@_activeEquip.ModelName</b></MudText>
+                <MudText Typo="Typo.body2">Ідентифікаційний номер транспортного засобу:<br><b>@_activeEquip.Vin</b></MudText>
+                <MudText Typo="Typo.body2">Рік випуску:<br><b>@_activeEquip.Year</b></MudText>
                 @if (_activeEquip.Euro != 0)
                 {
-                    <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>  
+                    <MudText Typo="Typo.body2">Рівень екологічних норм:<br><b>@_activeEquip.Euro</b></MudText>
                 }
                 <MudText Typo="Typo.body2">Опис: <b>@_activeEquip.Description</b></MudText>
                 @if (_activeEquip.VolumeFuelTank != 0)
                 {
-                    <MudText Typo="Typo.body2">Об'єм паливного бака:<br> <b>@_activeEquip.VolumeFuelTank</b> л</MudText>
+                    <MudText Typo="Typo.body2">Об'єм паливного бака:<br><b>@_activeEquip.VolumeFuelTank</b> л</MudText>
                 }
                 @if (_activeEquip.OsagoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">ОСЦПВ: <b>с @_activeEquip.OsagoStart по @_activeEquip.OsagoEnd</b></MudText>
+                    <MudText Typo="Typo.body2">ОСЦПВ:<br><b>с @_activeEquip.OsagoStart по @_activeEquip.OsagoEnd</b></MudText>
                 }
                 @if (_activeEquip.GreenStart is not null)
                 {
-                    <MudText Typo="Typo.body2">Зелена <br> карта: <b>с @_activeEquip.GreenStart по @_activeEquip.GreenEnd</b></MudText>
+                    <MudText Typo="Typo.body2">Зелена карта:<br><b>с @_activeEquip.GreenStart по @_activeEquip.GreenEnd</b></MudText>
                 }
                 @if (_activeEquip.KaskoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">КАСКО: <b>с @_activeEquip.KaskoStart по @_activeEquip.KaskoEnd</b></MudText>
+                    <MudText Typo="Typo.body2">КАСКО:<br><b>с @_activeEquip.KaskoStart по @_activeEquip.KaskoEnd</b></MudText>
                 }
                 @if (_activeEquip.TachoStart is not null)
                 {
-                    <MudText Typo="Typo.body2">Адаптація<br>тахографа: <b>с @_activeEquip.TachoStart по @_activeEquip.TachoEnd</b></MudText>
+                    <MudText Typo="Typo.body2">Адаптація<br>тахографа:<br><b>с @_activeEquip.TachoStart по @_activeEquip.TachoEnd</b></MudText>
                 }
                 @if (_activeEquip.InspectionStart is not null)
                 {
-                    <MudText Typo="Typo.body2">Проведення ТО <b>с @_activeEquip.InspectionStart по @_activeEquip.InspectionEnd</b></MudText>
+                    <MudText Typo="Typo.body2">Проведення ТО<br><b>с @_activeEquip.InspectionStart по @_activeEquip.InspectionEnd</b></MudText>
                 }
             </MudDrawerContainer>
         }
