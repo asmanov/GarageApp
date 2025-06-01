@@ -31,9 +31,9 @@
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Адаптація тахографа</MudAlert>
             }
-            else if (Equipment.TachoStart is DateOnly tachoDate)
+            else if (Equipment.TachoEnd is DateOnly tachoDate)
             {
-                if ((tachoDate.ToDateTime(TimeOnly.MinValue) - (DateTime.Now)).TotalDays < 7)
+                if (((tachoDate.ToDateTime(TimeOnly.MinValue) - (DateTime.Now)).TotalDays) < 7)
                 {
                     <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Зверніть увагу на на адаптацію тахографа</MudAlert>
                 }
@@ -42,9 +42,9 @@
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Треба провести техничну інспекцію</MudAlert>
             }
-            else if (Equipment.InspectionStart is DateOnly inspectionDate)
+            else if (Equipment.InspectionEnd is DateOnly inspectionDate)
             {
-                if ((inspectionDate.ToDateTime(TimeOnly.MinValue) - (DateTime.Now)).TotalDays < 7)
+                if (((inspectionDate.ToDateTime(TimeOnly.MinValue) - (DateTime.Now)).TotalDays) < 7)
                 {
                     <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Зверніть увагу на техничну інспекцію</MudAlert>
                 }
