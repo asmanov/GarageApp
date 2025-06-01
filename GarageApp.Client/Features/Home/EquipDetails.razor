@@ -17,8 +17,6 @@
             </MudDrawerHeader>
             <MudImage Src=@_activeEquip.Image Alt="Track" Elevation="25" Width="300" 
             Class="rounded-lg ma-5" />
-            <MudDrawerContainer>
-            </MudDrawerContainer>
             <MudDrawerContainer Class="ma-10">
                 <MudText Typo="Typo.h6"><b>@_activeEquip.RegistrationNumber</b></MudText>
                 <MudText Typo="Typo.body2">Марка: <b>@_activeEquip.BrandName</b></MudText>
@@ -32,7 +30,7 @@
                 <MudText Typo="Typo.body2">Опис: <b>@_activeEquip.Description</b></MudText>
                 @if (_activeEquip.VolumeFuelTank != 0)
                 {
-                    <MudText Typo="Typo.body2">Об'єм <br> паливного бака: <b>@_activeEquip.VolumeFuelTank</b></MudText>  
+                    <MudText Typo="Typo.body2">Об'єм паливного бака:<br> <b>@_activeEquip.VolumeFuelTank</b> л</MudText>
                 }
                 @if (_activeEquip.OsagoStart is not null)
                 {
