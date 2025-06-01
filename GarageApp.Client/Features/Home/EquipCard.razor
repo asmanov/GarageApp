@@ -19,13 +19,19 @@
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Зелена карта відсутня</MudAlert>
             }
+
             @if (Equipment.OsagoStart is null)
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">ОСЦПВ відсутнє</MudAlert>
             }
+
             @if (Equipment.KaskoStart is null)
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">КАСКО відсутня</MudAlert>
+            }
+            else if (Equipment.KaskoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
+            {
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір КАСКО діє ще @(Equipment.KaskoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays) днів</MudAlert>
             }
             @if (Equipment.TachoStart is null && Equipment.Euro > 0)
             {
@@ -40,8 +46,8 @@
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Треба провести техничну інспекцію</MudAlert>
             }
             else if (Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
-            {                
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Зверніть увагу на техничну інспекцію</MudAlert>        
+            {
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничну інспекцію необхыдно провести через @(Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays) днів</MudAlert>
             }
         </MudCardContent>
         <MudCardActions>
