@@ -21,7 +21,7 @@
             }
             else if (Equipment.GreenEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір КАСКО закінчується через @(Equipment.GreenEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір "Зелена карта" закінчується через @(Equipment.GreenEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
             }
             @if (Equipment.OsagoStart is null)
             {
