@@ -19,6 +19,22 @@
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Зелена карта відсутня</MudAlert>
             }
+            @if (Equipment.OsagoStart is null)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">ОСЦПВ відсутнє</MudAlert>
+            }
+            @if (Equipment.KaskoStart is null)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">КАСКО відсутня</MudAlert>
+            }
+            @if (Equipment.TachoStart is null && Equipment.Euro > 0)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Адаптація тахографа</MudAlert>
+            }
+            @if (Equipment.InspectionStart is null)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Треба провести техничну інспекцію</MudAlert>
+            }
         </MudCardContent>
         <MudCardActions>
             <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="@(async () => await OnSelected.InvokeAsync(Equipment))">Learn More</MudButton >
