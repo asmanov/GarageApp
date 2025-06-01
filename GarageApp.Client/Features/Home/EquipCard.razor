@@ -21,7 +21,7 @@
             }
             else if (Equipment.GreenEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір КАСКО закінчується через @(Equipment.GreenEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір КАСКО закінчується через @(Equipment.GreenEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
             }
             @if (Equipment.OsagoStart is null)
             {
@@ -29,7 +29,7 @@
             }
             else if (Equipment.OsagoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір ОСЦПВ закінчується через @(Equipment.OsagoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір ОСЦПВ закінчується через @(Equipment.OsagoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
             }
             @if (Equipment.KaskoStart is null)
             {
@@ -37,7 +37,7 @@
             }
             else if (Equipment.KaskoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір КАСКО закінчується через @(Equipment.KaskoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Договір КАСКО закінчується через @(Equipment.KaskoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
             }
             @if (Equipment.TachoStart is null && Equipment.Euro > 0)
             {
@@ -45,7 +45,7 @@
             }
             else if (Equipment.TachoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Адаптацію тахографа провести @(Equipment.TachoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Адаптацію тахографа провести @(Equipment.TachoEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
             }
             @if (Equipment.InspectionStart is null)
             {
@@ -53,7 +53,7 @@
             }
             else if (Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничну інспекцію необхідно провести через @(Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничну інспекцію необхідно провести через @(Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
             }
         </MudCardContent>
         <MudCardActions>
