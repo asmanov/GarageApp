@@ -47,7 +47,7 @@
             }
             else if (Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
-                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничну інспекцію необхыдно провести через @(Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays) днів</MudAlert>
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничну інспекцію необхыдно провести через @(Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days) днів</MudAlert>
             }
         </MudCardContent>
         <MudCardActions>
