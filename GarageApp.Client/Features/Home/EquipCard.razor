@@ -15,6 +15,10 @@
             {
                 <MudText Typo="Typo.body2"><b />Рівень екологічних норм: @Equipment.Euro</MudText>
             }
+            @if ((Equipment.Euro > 4 || Equipment.Euro == 0) && Equipment.GreenStart is null)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Зелена карта відсутня</MudAlert>
+            }
         </MudCardContent>
         <MudCardActions>
             <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="@(async () => await OnSelected.InvokeAsync(Equipment))">Learn More</MudButton >
