@@ -17,7 +17,7 @@
                     }
                 </MudSelect>
                 <MudSelect Variant="Variant.Outlined" Style="margin-bottom: 10px;" T="string" 
-                @bind-Value="_newEvent.EventItem" Label="Оберить тип страховки">
+                @bind-Value="_newEvent.EventItem" Label="Оберить подію">
                     <MudSelectItem Value="@("Початок місяца")">Початок місяца</MudSelectItem>
                     <MudSelectItem Value="@("Техничне обслуговування")">Техничне обслуговування</MudSelectItem>
                     <MudSelectItem Value="@("Ремонт")">Ремонт</MudSelectItem>
@@ -30,7 +30,7 @@
                 <MudDatePicker Style="margin-bottom: 10px;" 
                 PickerVariant="PickerVariant.Dialog" Rounded="true" 
                     Elevation="12"
-                    Label="Start date" @bind-Date="DateEvent" 
+                    Label="Дата" @bind-Date="DateEvent" 
                     Variant="Variant.Outlined" />
                 <MudNumericField HideSpinButtons="true" @bind-Value="_newEvent.Odometr" 
                     Label="Одометр" 
