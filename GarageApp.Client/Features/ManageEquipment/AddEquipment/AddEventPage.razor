@@ -20,5 +20,16 @@
     private async Task SubmitNewEvent(Events item)
     {
         var response = await DatabaseService.Insert<Events>(item);
+
+        if (response == null)
+        {
+            Snackbar.Add("Ошибка при добавлении записи");
+            StateHasChanged();
+            return;
+        }
+
+        Snackbar.Add("Запись успешно добавлена");
+        _eventItem.ResetForm();
+        StateHasChanged();
     }
 }
