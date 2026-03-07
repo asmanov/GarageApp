@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GarageApp.Client",
   "resources": {
-    "hash": "sha256-Dkima1qmBgsCavherwYbLbSnyClq6dprZ11h/5/0xFM=",
+    "hash": "sha256-xbI1EtsK3F+EAVo1lBqNwTH3Dm3ct08TkBLIrbnyTtM=",
     "jsModuleNative": {
       "dotnet.native.8.0.24.ugqavbte1w.js": "sha256-4g0GzvOXSwZvTLca4PrWJkoeltz+V9IF/hEFDcnVros="
     },
@@ -20,8 +20,8 @@
       "Blazored.FluentValidation.wasm": "sha256-MSQuUWmw/uBMui2/n4kdEKi0h5j0G+EuO1sM6KK6ltM=",
       "Blazored.LocalStorage.wasm": "sha256-OaMAAd5n7ORfyur5e3QIyEVKJ76MKIvwbg7/icnnYcU=",
       "FluentValidation.wasm": "sha256-y2wmu0q0yfh4/O0BN8s/ZnPUFizpBUQu6X5SeIQJjnI=",
-      "GarageApp.Client.wasm": "sha256-r8mQ5r8rq5l48FWmm4PK4MysGMc/SZ7xuLy23KpxkGw=",
-      "GarageApp.Shared.wasm": "sha256-S5mXFiKd45P389xZ5psROa7voo87aRKSBysRgIKO0+U=",
+      "GarageApp.Client.wasm": "sha256-1aoeoTqoHzmKgeF+B/GoAoZ4GHH5B6WN1Ust3DCxlss=",
+      "GarageApp.Shared.wasm": "sha256-ToiNl067JfkQotiqJkT60xkbwzRtBRJbKEYTyCwbeyE=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-VrRLwOls/y3g5WqKmjzxvjudPElHJbYlvsHBhsKh1Iw=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-mWhpzDwrkacHCYAyIjq4VS2RzQ7Y+qAO0bPNZGXlRUU=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-SciqdmErj09n6FLxqotzkSAgmK9NB0o3cxMUuprIBSE=",
