@@ -4,9 +4,9 @@
     <FluentValidationValidator />
     <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
              Elevation="100">
-        <MudCardHeader Typo="Typo.h1"><b>Add inspection info</b></MudCardHeader>
+        <MudCardHeader Typo="Typo.h1"><b>Додайте інформацію стосовно страхування обладнання</b></MudCardHeader>
         <MudCardContent>
-            <FormSection Title="Техничний огляд" HelpText="Вкажить дату проведення техничного огляда">
+            <FormSection Title="Техничний огляд" HelpText="Вкажить дату проведення техничного контролю">
                 <MudSelect Variant="Variant.Outlined" Style="margin-bottom: 10px;" T="string" 
                 @bind-Value="_inshurance.Type" Label="Оберить тип страховки">
                     <MudSelectItem Value="@("Зелена карта")">Зелена карта</MudSelectItem>

@@ -1,0 +1,80 @@
+﻿@inject DatabaseService DatabaseService
+
+<EditForm Model="_newEvent" OnInvalidSubmit="SubmitForm">
+    <FluentValidationValidator />
+    <MudCard Style="margin-left: 20px; margin-right: 20px; background-color: lightskyblue"
+     Elevation="100">
+        <MudCardHeader Typo="Typo.h1"><b>Для внесення показника одометра</b></MudCardHeader>
+        <MudCardContent>
+            <FormSection>
+                <MudSelect T="int" @bind-Value="_newEvent.Track" Variant="Variant.Outlined" Label="Регістрціоний номер авто">
+                    @if (GarageList?.Any() == true)
+                    {
+                        @foreach (var item in GarageList)
+                    {
+                        <MudSelectItem T="int" Value="@item.Id">@item.RegistrationNumber</MudSelectItem>
+                    }
+                    }
+                </MudSelect>
+                <MudSelect Variant="Variant.Outlined" Style="margin-bottom: 10px;" T="string" 
+                @bind-Value="_newEvent.EventItem" Label="Оберить тип страховки">
+                    <MudSelectItem Value="@("Початок місяца")">Початок місяца</MudSelectItem>
+                    <MudSelectItem Value="@("Техничне обслуговування")">Техничне обслуговування</MudSelectItem>
+                    <MudSelectItem Value="@("Ремонт")">Ремонт</MudSelectItem>
+                    <MudSelectItem Value="@("Шиномонтаж")">Шиномонтаж</MudSelectItem>
+                    <MudSelectItem Value="@("Техничний контроль")">Техничний контроль</MudSelectItem>
+                    <MudSelectItem Value="@("Інше")">Інше</MudSelectItem>
+                </MudSelect>
+                <MudTextField @bind-Value="_newEvent.Description" Label="Опис" 
+                    Variant="Variant.Outlined"></MudTextField>
+                <MudDatePicker Style="margin-bottom: 10px;" 
+                PickerVariant="PickerVariant.Dialog" Rounded="true" 
+                    Elevation="12"
+                    Label="Start date" @bind-Date="DateEvent" 
+                    Variant="Variant.Outlined" />
+                <MudNumericField HideSpinButtons="true" @bind-Value="_newEvent.Odometr" 
+                    Label="Одометр" 
+                    Variant="Variant.Outlined" 
+                    Min="0" />
+                <MudNumericField HideSpinButtons="true" @bind-Value="_newEvent.Cost" 
+                    Label="Вартість" 
+                    Variant="Variant.Outlined" 
+                    Min="0" />
+            </FormSection>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Reset"
+                       Variant="Variant.Filled" Color="Color.Error"
+                       OnClick="@(() => _newEvent = new Events())">Reset</MudButton>
+            <MudButton ButtonType="ButtonType.Submit"
+                       Variant="Variant.Filled" Color="Color.Info" Class="ml-auto">Submit</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+    private Events _newEvent = new Events();
+
+    private DateTime? DateEvent
+    {
+        get => _newEvent.EventDate != default ? _newEvent.EventDate.ToDateTime(TimeOnly.MinValue) : null;
+        set => _newEvent.EventDate = value.HasValue ? DateOnly.FromDateTime(value.Value) : default;
+    }
+
+    public IEnumerable<Garage> GarageList { get; set; } = new List<Garage>();
+
+    [Parameter, EditorRequired]
+    public required Func<Events, Task> OnSubmit { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        GarageList = await DatabaseService.FromS<Garage>();
+    }
+
+    public void ResetForm()
+    {
+        _newEvent = new Events();
+    }
+
+    private async Task SubmitForm() => await OnSubmit(_newEvent);
+}
