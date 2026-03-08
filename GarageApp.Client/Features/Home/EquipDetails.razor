@@ -52,6 +52,11 @@
                 {
                     <MudText Typo="Typo.body2">Проведення ТО<br><b>с @_activeEquip.InspectionStart по @_activeEquip.InspectionEnd</b></MudText>
                 }
+                @if (_activeEquip.PeriodInspection is not null)
+                {
+                    <MudText Typo="Typo.body2">Техничне обслуговування проведено <br><b>на @_activeEquip.LastInspection</b></MudText>
+                    <MudText Typo="Typo.body2">Зараз пробіг <br><b> @_activeEquip.LastOdometr</b></MudText>
+                }
             </MudDrawerContainer>
         }
     </MudDrawer>

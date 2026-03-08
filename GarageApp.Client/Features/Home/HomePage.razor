@@ -26,7 +26,10 @@
             <GridTemplate>
                 @foreach (var equip in _equips)
                 {
-                    <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" />
+                    @if (equip.Active)
+                    {
+                        <EquipCard Equipment="equip" OnSelected="HandleEquipSelected" /> 
+                    }
                 }
             </GridTemplate>
             <TableTemplete >
@@ -41,19 +44,24 @@
                             <th>Модель</th>
                             <th>Год<br />выпуска</th>
                             <th>Класс<br />выбросов</th>
+                            <th>Пробіг</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var equip in _equips)
                         {
-                            <tr>
-                                <td>  @equip.RegistrationNumber</td>
-                                <td>@equip.Vin</td>
-                                <td>@equip.BrandName</td>
-                                <td>@equip.ModelName</td>
-                                <td>@equip.Year</td>
-                                <td>@equip.Euro</td>
-                            </tr>
+                            @if (equip.Active)
+                            {
+                                <tr>
+                                    <td>  @equip.RegistrationNumber</td>
+                                    <td>@equip.Vin</td>
+                                    <td>@equip.BrandName</td>
+                                    <td>@equip.ModelName</td>
+                                    <td>@equip.Year</td>
+                                    <td>@equip.Euro</td>
+                                    <td>@equip.LastOdometr</td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </MudSimpleTable>
@@ -98,7 +106,12 @@
                         TachoStart = item.TachoStart,
                         TachoEnd = item.TachoEnd,
                         InspectionStart = item.InspectionStart,
-                        InspectionEnd = item.InspectionEnd
+                        InspectionEnd = item.InspectionEnd,
+                        LastInspection = item.LastInspection,
+                        LastOdometr = item.LastOdometr,
+                        AfterInspection = item.AfterInspection,
+                        Active = item.Active,
+                        PeriodInspection = item.PeriodInspection
                     };
                 _equips = _equips.Append<Equipment>(equip);
             }

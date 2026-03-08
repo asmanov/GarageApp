@@ -63,5 +63,20 @@ namespace GarageApp.Client.Features.Home
 
         [Column("inspection_end")]
         public DateOnly? InspectionEnd { get; set; }
+
+        [Column("to_max")]
+        public int? LastInspection { get; set; }
+
+        [Column("total_max")]
+        public int? LastOdometr {  get; set; }
+
+        [Column("after_to")]
+        public int? AfterInspection { get; set; }
+
+        [Column("eq_active")]
+        public bool Active { get; set; }
+
+        [Column("period_inspection")]
+        public int? PeriodInspection { get; set; }
     }
 }

@@ -11,6 +11,10 @@
             <MudText Typo="Typo.body2">Марка: <b>@Equipment.BrandName</b></MudText>
             <MudText Typo="Typo.body2">Модель: <b>@Equipment.ModelName</b></MudText>
             <MudText Typo="Typo.body2">Рік випуску: <b>@Equipment.Year</b></MudText>
+            @if(Equipment.LastOdometr is not null)
+            {
+                <MudText Typo="Typo.body2">Пробіг: <b>@Equipment.LastOdometr</b></MudText>   
+            }
             @if (Equipment.Euro != 0)
             {
                 <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@Equipment.Euro</b></MudText>
@@ -54,6 +58,14 @@
             else if (Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).TotalDays < 7)
             {
                 <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничну інспекцію необхідно провести через @(Equipment.InspectionEnd?.ToDateTime(TimeOnly.MinValue).Subtract(DateTime.Now).Days + 1) днів</MudAlert>
+            }
+            @if (Equipment.PeriodInspection is not null && (Equipment.PeriodInspection - Equipment.AfterInspection) < 1000 && (Equipment.PeriodInspection - Equipment.AfterInspection) > 0)
+            {
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true" Class="my-2">Техничне обслуговування необхідно провести через @(Equipment.PeriodInspection - Equipment.AfterInspection) км</MudAlert>
+            }
+            else if (Equipment.PeriodInspection is not null && (Equipment.PeriodInspection - Equipment.AfterInspection) < 0)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Dense="true" Class="my-2">Треба провести техничне обслуговування</MudAlert>
             }
         </MudCardContent>
         <MudCardActions>
