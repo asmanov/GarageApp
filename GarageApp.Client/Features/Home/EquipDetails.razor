@@ -54,8 +54,8 @@
                 }
                 @if (_activeEquip.PeriodInspection is not null)
                 {
-                    <MudText Typo="Typo.body2">Техничне обслуговування проведено <br><b>на @_activeEquip.LastInspection</b></MudText>
-                    <MudText Typo="Typo.body2">Зараз пробіг <br><b> @_activeEquip.LastOdometr</b></MudText>
+                    <MudText Typo="Typo.body2">Техничне обслуговування проведено на<br><b>@_activeEquip.LastInspection</b> км</MudText>
+                    <MudText Typo="Typo.body2">Пробіг після ТО <b> @_activeEquip.AfterInspection</b> км</MudText>
                 }
             </MudDrawerContainer>
         }
