@@ -108,6 +108,11 @@
                 {
                     <MudText Typo="Typo.body2">Проведення ТО<br><b>с @_activeEquip.InspectionStart по @_activeEquip.InspectionEnd</b></MudText>
                 }
+                @if (_activeEquip.PeriodInspection is not null)
+                {
+                    <MudText Typo="Typo.body2">Техничне обслуговування проведено на<br><b>@_activeEquip.LastInspection</b> км</MudText>
+                    <MudText Typo="Typo.body2">Пробіг після ТО <b> @_activeEquip.AfterInspection</b> км</MudText>
+                }
             </MudDrawerContainer>
         }
         <MudFab StartIcon="@Icons.Material.Filled.Close"
