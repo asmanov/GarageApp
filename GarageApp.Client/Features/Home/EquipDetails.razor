@@ -22,15 +22,15 @@
                 <MudText Typo="Typo.body2">Марка:<br><b>@_activeEquip.BrandName</b></MudText>
                 <MudText Typo="Typo.body2">Модель:<br><b>@_activeEquip.ModelName</b></MudText>
                 <MudText Typo="Typo.body2">Ідентифікаційний номер транспортного засобу:<br><b>@_activeEquip.Vin</b></MudText>
-                <MudText Typo="Typo.body2">Рік випуску:<br><b>@_activeEquip.Year</b></MudText>
+                <MudText Typo="Typo.body2">Рік випуску: <b>@_activeEquip.Year</b></MudText>
                 @if (_activeEquip.Euro != 0)
                 {
-                    <MudText Typo="Typo.body2">Рівень екологічних норм:<br><b>@_activeEquip.Euro</b></MudText>
+                    <MudText Typo="Typo.body2">Рівень екологічних норм: <b>@_activeEquip.Euro</b></MudText>
                 }
                 <MudText Typo="Typo.body2">Опис: <b>@_activeEquip.Description</b></MudText>
                 @if (_activeEquip.VolumeFuelTank != 0)
                 {
-                    <MudText Typo="Typo.body2">Об'єм паливного бака:<br><b>@_activeEquip.VolumeFuelTank</b> л</MudText>
+                    <MudText Typo="Typo.body2">Об'єм паливного бака: <b>@_activeEquip.VolumeFuelTank</b> л</MudText>
                 }
                 @if (_activeEquip.OsagoStart is not null)
                 {
